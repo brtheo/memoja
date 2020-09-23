@@ -17,9 +17,9 @@ export class WordCard extends LitElement {
     speechSynthesis.speak(utterance)
   }
   get english(): string[] {
-    return this.word.english.includes(',')
-      ? this.word.english.split(',')
-      : [this.word.english]
+    return this.word.english.includes(',') || this.word.english.includes(';')
+    ? this.word.english.split(/[;,]+/)
+    : [this.word.english]
   }
   static get styles() {
     return [card, css`
@@ -31,7 +31,7 @@ export class WordCard extends LitElement {
         margin: 0;
         font-size: .6em;
         font-family: var(--subFont);
-        border-bottom: 1px solid var(--gray);
+        border-bottom: 1px solid var(--secondary);
         width: fit-content;
         line-height: 1.6em;
         filter: opacity(0.7);
@@ -39,10 +39,10 @@ export class WordCard extends LitElement {
       bkj-button {
         margin: 0 var(--padding);
         align-self: center;
-        background-color: var(--yellow);
+        /* background-color: var(--primary); */
       }
       bkj-icon {
-        fill: var(--black)
+        fill: var(--secondary)
       }
       frequency-meter {
         display: flex;
@@ -52,15 +52,15 @@ export class WordCard extends LitElement {
       .korean {
         display: flex;
         flex-direction: row;
-        max-height: 90px;
       }
       .hanja {
-        font-size: 2.2em;
+        font-size: 1.7em;
+
       }
       .hangul {
         font-size: 1.1em;
         filter: opacity(.5);
-        align-self: flex-end;
+        align-self: center;
       }
       .english {
         font-size: .6em;
@@ -93,7 +93,7 @@ export class WordCard extends LitElement {
     return html`
       <header>
         <pre>${this.title}</pre>
-        <bkj-button size="35px"rounded @click=${this.playListening}>
+        <bkj-button size="35px" rounded transparent @click=${this.playListening}>
           <bkj-icon name="volume-high" ></bkj-icon>
         </bkj-button>
         <frequency-meter value=${freq_deg} max="5666" segments="5" radius="2"></frequency-meter>

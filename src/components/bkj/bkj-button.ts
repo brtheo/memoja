@@ -48,13 +48,10 @@ export class BkjButton extends HTMLElement {
           text-transform: uppercase;
           letter-spacing: .05rem;
           color: var(--color);
-          transition: filter .5s;
           font-family: var(--regularFont);
           ${this.setSize()}
-          ${this.setBackgroundColor()}
-        }
-        button:hover {
-          ${this.rounded ? '': 'filter: drop-shadow(0px 0px 5px var(--yellow))'}
+          background-color: transparent;
+          /* ${this.setBackgroundColor()} */
         }
         :host {
           display: block;
@@ -63,7 +60,7 @@ export class BkjButton extends HTMLElement {
           ${this.setSize()}
         }
         :host(:hover) {
-          filter: sepia(1);
+          ${this.rounded ? `filter: grayscale(1)`: `filter: drop-shadow(0px 0px 5px var(--${this.color}))`}
         }
       </style>
       <button>

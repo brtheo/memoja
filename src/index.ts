@@ -2,7 +2,8 @@ import './config/router.config'
 import './config/firebase.config'
 import './config/assets.config'
 
-import './components/xHeader'
+import './components/partials/xHeader'
+import './components/partials/xFooter'
 
 import {initDarkmode} from '@brtheo/darkmode-switcher'
 import {registerTranslateConfig, use} from 'lit-translate'

@@ -13,13 +13,14 @@ export class SearchBar extends MobxLitElement {
       }
       input {
         outline: none;
-        border: solid 2px var(--blue);
+        border: none;
+        box-shadow: inset 1px 1px 15px var(--insetShadowColor);
         font-family: var(--regularFont);
         font-size: 1.2rem;
         padding: 5px 35px 5px 15px;
-        border-radius: var(--radius);
-        background-color: var(--white);
-        color: var(--black);
+        border-radius: calc(var(--radius)*2);
+        background-color: var(--bgColorContrasted);
+        color: var(--color);
         width: 75vw;
       }
       bkj-icon {
@@ -30,12 +31,12 @@ export class SearchBar extends MobxLitElement {
         transform: translateX(-50%);
         right: 0;
         position: absolute;
-        fill: var(--black);
+        fill: var(--color);
         filter: opacity(0.7);
         transition: fill 0.5s, filter .5s;
       }
       input:focus + bkj-icon{
-        fill: var(--blue);
+        fill: var(--secondary);
         filter: opacity(1);
       }
     `

@@ -23,10 +23,10 @@ export class FrequencyMeter extends LitElement {
   static get styles() {
     return css`    
       svg {
-        filter: drop-shadow(0px 0px 2px var(--yellow));
+        filter: drop-shadow(0px 0px 2px var(--primary));
       }  
       rect{
-        fill: var(--yellow);
+        fill: var(--primary);
         opacity: .2;
         
       }

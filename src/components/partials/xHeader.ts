@@ -6,9 +6,9 @@ import {translate} from 'lit-translate'
 import {switchDarkmode} from '@brtheo/darkmode-switcher'
 
 
-import './bkj-icon'
-import './bkj-button'
-import './search-bar'
+import '../bkj/bkj-icon'
+import '../bkj/bkj-button'
+import '../search-bar'
 
 
 @customElement('x-header')
@@ -25,17 +25,18 @@ export class xHeader extends MobxLitElement {
         grid-template-areas: 
         "branding commands"
         "input input";
-        background-color: var(--yellow);
-        height: 120px;
+        background-color: var(--primary);
+        height: 75px;
         box-shadow: 1px -5px 20px var(--black);
-        padding: var(--padding)
+        padding: var(--padding);
+        border-radius: 0 0 25px 25px;
       }
       .branding {
         grid-area: branding;
         display: flex;
         flex-direction: column;
         place-content: flex-start;
-        color: var(--blue);
+        /* color: var(--blue); */
         margin: 0 var(--padding)
       }
       .branding h1, .branding h2 {
@@ -58,17 +59,22 @@ export class xHeader extends MobxLitElement {
         place-content: center flex-end;
       }
       bkj-button {
-        background-color: var(--yellow);
+        background-color: var(--primary);
         margin-left: var(--padding)
       }
       bkj-icon {
-        fill: var(--blue);
+        fill: var(--color);
+      }
+      .switcher {
+        transition: transform .5s;
+        transform: rotate(var(--colorModeSwitcherIconRotate))
       }
       .inputcontainer {
         grid-area: input;
         align-self: center;
         display: flex;
         place-content: center;
+        transform: translateY(5px);
       }
     `
   }
@@ -76,14 +82,16 @@ export class xHeader extends MobxLitElement {
     const {handleThemeSwitch} = this
     return html`
       <section class="branding">
-        <h1>📗 Memoja</h1>
+        <h1>
+          <bkj-icon name="dictionary" provider="local" size="35px"></bkj-icon>
+          Memoja</h1>
         <h2>${translate('HEADER.HANJA_DICTIONNARY')}</h2>
       </section>
       <section class="commands">
         <bkj-button size="35px" transparent rounded>
           <bkj-icon name="account-circle-outline"></bkj-icon>
         </bkj-button>
-        <bkj-button @click=${handleThemeSwitch} size="35px" transparent rounded>
+        <bkj-button @click=${handleThemeSwitch} class="switcher" size="35px" transparent rounded>
           <bkj-icon name="theme-light-dark"></bkj-icon>
         </bkj-button>
       </section>

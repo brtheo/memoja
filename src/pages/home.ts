@@ -20,23 +20,25 @@ export class HomePage extends MobxLitElement {
         display: flex;
         flex-direction: column;
         place-content: center;
+        margin-top: 30px;
       }
       word-card {
         max-width: 450px;
-        border-left: solid 5px var(--red);
+        border-left: solid 7px var(--secondary);
         background-color: var(--bgColorContrasted);
         background-image: url('/assets/images/fan.svg');
         background-position: right -75px bottom -100px;
         background-repeat: no-repeat;
         background-size: contain;
+        margin-bottom: var(--padding);
       }
       .seemore {
         height: fit-content;
         width: fit-content;
         padding: 5px var(--padding);
-        border: solid 2px var(--yellow);
+        border: solid 2px var(--secondary);
         border-radius: 5px;
-        background-color: transparent;
+        background-color: var(--primary);
         margin-left: auto;
       }
     `
@@ -46,8 +48,14 @@ export class HomePage extends MobxLitElement {
     return html`
       <word-card .title=${translate('WORD_CARD.WORD_OF_THE_DAY')} .word=${randoms}>
         <bkj-button 
-          transparent
-          rounded 
+          color="secondary"
+          @click=${() => Router.go(`/word/${randoms.id}`)} 
+          slot="action"
+          class="seemore">${translate('WORD_CARD.SEE_MORE')}</bkj-button>
+      </word-card>
+      <word-card .title=${translate('WORD_CARD.WORD_OF_THE_DAY')} .word=${randoms}>
+        <bkj-button 
+          color="secondary"
           @click=${() => Router.go(`/word/${randoms.id}`)} 
           slot="action"
           class="seemore">${translate('WORD_CARD.SEE_MORE')}</bkj-button>
