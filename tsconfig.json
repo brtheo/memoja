@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"module": "esnext",
+		"target": "ES6",
+		"moduleResolution": "node",
+		"lib": [
+			"ESNext.Array",
+			"DOM",
+			"ESNext",
+			"ES2017",
+			"ES2017.Intl"
+		],
+		"resolveJsonModule": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true
+	},
+	"include": [
+		"src/**/*.ts"
+	],
+	"exclude": ["node_modules/"]
+}

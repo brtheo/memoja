@@ -1,0 +1,36 @@
+{
+  "name": "memoja",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup --config --watch",
+    "build": "rollup --config",
+    "fire": "firebase serve",
+    "serve": "browser-sync start --proxy 'localhost:5000' --files 'dist/*'"
+  },
+  "author": "brtheo",
+  "license": "ISC",
+  "dependencies": {
+    "@adobe/lit-mobx": "^1.0.0",
+    "@brtheo/darkmode-switcher": "^1.0.0",
+    "@firebase/app": "^0.6.11",
+    "@firebase/auth": "^0.14.9",
+    "@firebase/firestore": "^1.17.0",
+    "@vaadin/router": "^1.7.2",
+    "lit-element": "^2.4.0",
+    "lit-translate": "^1.2.1",
+    "mobx": "^5.15.6"
+  },
+  "devDependencies": {
+    "@firebase/app-types": "^0.6.1",
+    "@firebase/auth-types": "^0.10.1",
+    "@firebase/firestore-types": "^1.13.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-typescript": "^6.0.0",
+    "rollup": "^2.26.11",
+    "rollup-plugin-copy": "^3.3.0",
+    "typescript": "^4.0.3"
+  }
+}

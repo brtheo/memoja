@@ -1,0 +1,1 @@
+globalThis.bkj = {iconProvider:{local : '/assets/images/'}}
