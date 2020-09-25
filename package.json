@@ -18,6 +18,7 @@
     "@firebase/auth": "^0.14.9",
     "@firebase/firestore": "^1.17.0",
     "@vaadin/router": "^1.7.2",
+    "hanzi-writer": "^2.2.2",
     "lit-element": "^2.4.0",
     "lit-translate": "^1.2.1",
     "mobx": "^5.15.6"

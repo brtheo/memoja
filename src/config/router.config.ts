@@ -1,13 +1,20 @@
 import {Router} from '@vaadin/router'
-import '../pages/home'
 
+import {state} from '../store'
+
+
+import '../pages/home'
+import '../pages/search'
+
+const footer = document.querySelector('footer')
 const outlet = document.getElementById('outlet')
 const router = new Router(outlet)
 router.setRoutes([
-  {path: '/', component: 'home-page'},
-  {path: '/about', component: 'about-page'},
-  {path: '/word/:id', component: 'word-page'},
-  {path: '/hanja/:id', component: 'hanja-page'},
+  {path: '/', component: 'home-page', action: () => {state.setPage('home'); footer.classList.remove("hidden")}},
+{path: '/search', component: 'search-page',  action: () => {state.setPage('search');/* footer.classList.add("hidden") */}},
+  {path: '/about', component: 'about-page',  action: () => {state.setPage('about')}},
+  {path: '/word/:id', component: 'word-page',  action: () => {state.setPage('word')}},
+  {path: '/hanja/:id', component: 'hanja-page',  action: () => {state.setPage('hanja')}},
 ])
 function putOnYourHelmet(name) {
   const base = "📗 Memoja |"
@@ -18,6 +25,8 @@ addEventListener('helmet', (e: CustomEvent) => {
   e.stopImmediatePropagation()
   switch(e.detail) {
     case 'Home': putOnYourHelmet('Home') 
+    break
+    case 'Search': putOnYourHelmet('Search')
     break
     case 'About': putOnYourHelmet('About') 
     break

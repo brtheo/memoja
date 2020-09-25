@@ -1,3 +1,5 @@
+import { LitElement } from "lit-element"
+
 export interface IWord {
   english: string;
   hangul: string;
@@ -22,3 +24,6 @@ export interface IHanja {
       kr: string[];
   };
 }
+
+export type QueryShape = 'en' | 'ko' | 'cn' | 'radical'
+export type LitElementConstructor = new (...args: any[]) => LitElement

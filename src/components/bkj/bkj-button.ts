@@ -1,72 +1,55 @@
-type Color = "primary" | "secondary"
-export class BkjButton extends HTMLElement {
-  constructor(){
-    super()
-    this.attachShadow({mode:'open'})
-    this.render()
-  }
-  get rounded(): boolean {
-    return this.hasAttribute('rounded')
-  }
-  get size(): string | boolean {
-    return this.hasAttribute('size') 
-      ? this.getAttribute('size')
-      : false
-  }
-  get color(): Color {
-    return this.hasAttribute('color')
-      ? (this.getAttribute('color') as Color)
-      : 'primary'
-  }
-  get transparent(): boolean {
-    return this.hasAttribute('transparent')
-  }
+import { customElement, LitElement, property, html, css} from "lit-element"
+import {noSelect} from '../../styles'
+
+
+@customElement('bkj-button')
+export class BkjButton extends LitElement {
+  @property({type: Boolean}) private rounded: boolean = false
+  @property({type: Number}) private size: number
 
   protected setSize() {
     return this.size
-     ? `width: ${this.size};height: ${this.size};`
+     ? `width: ${this.size}px;height: ${this.size};^x`
      : ''
   }
 
-  protected setBackgroundColor() {
-    return this.transparent
-      ? `background-color: transparent`
-      : `background-color: var(--${this.color})`
+  static get styles() {
+    return [noSelect, css`
+      button {
+        display: flex;
+        place-content: center;
+        align-items: center;
+        outline: unset;
+        border: 0px;
+        cursor: pointer;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .05rem;
+        color: var(--color);
+        font-family: var(--regularFont);
+        padding: 0;
+        background-color: transparent;
+        width: var(--buttonW);
+        height: var(--buttonH);
+        border-radius: var(--buttonRadius);
+      }
+      :host {
+        transition: filter .5s;
+        display: flex;
+        width: max-content;
+        height: max-content;
+        border-radius: var(--buttonRadius);
+      }
+      :host(:hover) {
+        filter: hue-rotate(55deg);
+      }
+    `]
   }
-
   render() {
-    this.shadowRoot.innerHTML =  /*html*/`
-      <style>
-        button {
-          display: flex;
-          place-content: center;
-          align-items: center;
-          outline: unset;
-          border: 0px;
-          cursor: pointer;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: .05rem;
-          color: var(--color);
-          font-family: var(--regularFont);
-          ${this.setSize()}
-          background-color: transparent;
-          /* ${this.setBackgroundColor()} */
-        }
-        :host {
-          display: block;
-          transition: filter .5s;
-          ${this.rounded ? `border-radius: 50%;`: ''}
-          ${this.setSize()}
-        }
-        :host(:hover) {
-          ${this.rounded ? `filter: grayscale(1)`: `filter: drop-shadow(0px 0px 5px var(--${this.color}))`}
-        }
-      </style>
-      <button>
+    return html`
+      <button class="noSelect">
         <slot></slot>
       </button>
     `
   }
 }
-customElements.define('bkj-button', BkjButton)

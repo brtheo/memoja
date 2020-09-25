@@ -1,9 +1,13 @@
 {
   "HEADER": {
-    "HANJA_DICTIONNARY": "Hanja Dictionnary"
+    "HANJA_DICTIONNARY": "Hanja Dictionnary",
+    "SEARCH_PLACEHOLDER": "English, Hangul or Hanja"
   },
   "WORD_CARD": {
     "WORD_OF_THE_DAY": "Word of the Day",
     "SEE_MORE": "See more"
+  },
+  "LIST_VIEW": {
+    "ADD_PERSONAL_LIST": "Add to my list"
   }
 }

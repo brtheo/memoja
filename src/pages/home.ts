@@ -1,19 +1,23 @@
 import {MobxLitElement} from '@adobe/lit-mobx'
 import {html, css, customElement} from 'lit-element'
 import {translate} from 'lit-translate'
+import { Router, RouterLocation } from '@vaadin/router'
 
 import {Helmet} from '../utils'
 
 import '../components/word-card'
+import '../components/simple-card'
 
 import {findRandomWord} from '../db/api/words'
-import { Router } from '@vaadin/router'
+import {state} from '../store'
+
 
 
 @customElement('home-page')
 @Helmet
 export class HomePage extends MobxLitElement {
-  randoms = findRandomWord()
+  private randoms = findRandomWord()
+
   static get styles() {
     return css`
       :host {
@@ -32,6 +36,27 @@ export class HomePage extends MobxLitElement {
         background-size: contain;
         margin-bottom: var(--padding);
       }
+      simple-card {
+        max-width: 450px;
+        height: 420px;
+        border-left: solid 7px var(--secondary);
+        background-color: var(--bgColorContrasted);
+        background-image: url('/assets/images/dessert.svg');
+        background-position: right -65px bottom -15px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-bottom: var(--padding);
+      }
+      simple-card:nth-child(1) {
+        background-image: url('/assets/images/dessert.svg');
+      }
+      simple-card:nth-child(2) {
+        background-image: url('/assets/images/bibimbap.svg');
+      }
+      simple-card:nth-child(3) {
+        background-image: url('/assets/images/bulgogi.svg');
+      }
+      
       .seemore {
         height: fit-content;
         width: fit-content;
@@ -48,18 +73,19 @@ export class HomePage extends MobxLitElement {
     return html`
       <word-card .title=${translate('WORD_CARD.WORD_OF_THE_DAY')} .word=${randoms}>
         <bkj-button 
-          color="secondary"
           @click=${() => Router.go(`/word/${randoms.id}`)} 
           slot="action"
           class="seemore">${translate('WORD_CARD.SEE_MORE')}</bkj-button>
       </word-card>
-      <word-card .title=${translate('WORD_CARD.WORD_OF_THE_DAY')} .word=${randoms}>
-        <bkj-button 
-          color="secondary"
-          @click=${() => Router.go(`/word/${randoms.id}`)} 
-          slot="action"
-          class="seemore">${translate('WORD_CARD.SEE_MORE')}</bkj-button>
-      </word-card>
+      <simple-card>
+        Learning ressources
+      </simple-card>
+      <simple-card>
+        Lorem ipsum
+      </simple-card>
+      <simple-card>
+        Dolor sit amet
+      </simple-card>
     `
   }
 }
