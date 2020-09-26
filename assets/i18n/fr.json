@@ -5,9 +5,16 @@
   },
   "WORD_CARD": {
     "WORD_OF_THE_DAY": "Mot du Jour",
-    "SEE_MORE": "voir plus"
+    "SEE_MORE": "voir plus",
+    "SEE_HANJA_DETAILS": "Voir le Hanja en détails"
   },
   "LIST_VIEW": {
     "ADD_PERSONAL_LIST": "Ajouter a ma liste"
+  },
+  "FILTER_SETTINGS": {
+    "TITLE": "Options de filtrage",
+    "START": "Début",
+    "END": "Fin",
+    "INCLUDE": "Inclus"
   }
 }

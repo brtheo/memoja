@@ -5,6 +5,8 @@ import {state} from '../store'
 
 import '../pages/home'
 import '../pages/search'
+import '../pages/word'
+import '../pages/hanja'
 
 const footer = document.querySelector('footer')
 const outlet = document.getElementById('outlet')
@@ -16,6 +18,7 @@ router.setRoutes([
   {path: '/word/:id', component: 'word-page',  action: () => {state.setPage('word')}},
   {path: '/hanja/:id', component: 'hanja-page',  action: () => {state.setPage('hanja')}},
 ])
+
 function putOnYourHelmet(name) {
   const base = "📗 Memoja |"
   document.title = `${base} ${name}`

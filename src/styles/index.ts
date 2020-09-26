@@ -22,3 +22,13 @@ export const noSelect = css`
     -webkit-tap-highlight-color: transparent;
   }
 `
+
+export const insetHanja = css`
+  .inset-hanja {
+    margin-right: 5px;
+    box-shadow: var(--bgColor) 2px 2px 3px inset;
+    --buttonH: 30px;
+    --buttonW: 30px;
+    --buttonRadius: var(--radius);
+  }
+`

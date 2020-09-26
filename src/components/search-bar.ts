@@ -39,7 +39,7 @@ export class SearchBar extends MobxLitElement {
         position: relative;
         display: flex;
         place-content: center;
-        transition: transform .25s ease;
+        transition: transform var(--transitionTiming);
       }
       input {
         outline: none;
@@ -74,7 +74,7 @@ export class SearchBar extends MobxLitElement {
   protected render() {
     const {handleFocus, handleKeyup: handleKeyDown} = this
     return html`
-      <input @focus=${handleFocus} @keyup=${handleKeyDown} id="search" type="text" autocomplete="false" placeholder=${translate('HEADER.SEARCH_PLACEHOLDER')}></input>
+      <input @focus=${handleFocus} @keyup=${handleKeyDown} id="search" type="text" autocomplete="off" placeholder=${translate('HEADER.SEARCH_PLACEHOLDER')}></input>
       <bkj-icon name="magnify" size="20px"></bkj-icon>
     `
   }

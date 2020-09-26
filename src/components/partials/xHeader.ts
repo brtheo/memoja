@@ -70,7 +70,7 @@ export class xHeader extends MobxLitElement {
         fill: var(--color);
       }
       .switcher {
-        transition: transform .5s;
+        transition: transform var(--transitionTiming);
         transform: rotate(var(--colorModeSwitcherIconRotate))
       }
       #inputcontainer {
@@ -104,7 +104,7 @@ export class xHeader extends MobxLitElement {
     return html`
       ${state.page === 'home'? brandingSection: null}
       <section class="commands">
-        <!-- <bkj-button size="35px" transparent rounded>
+        <!-- <bkj-button>
           <bkj-icon name="account-circle-outline"></bkj-icon>
         </bkj-button> -->
         <bkj-button @click=${handleThemeSwitch} class="switcher">

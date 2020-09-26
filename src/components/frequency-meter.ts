@@ -10,7 +10,7 @@ export class FrequencyMeter extends LitElement {
   @property({type: Number}) segments: number = 3
   @property({type: Number}) radius: number = 5
 
-  @property() value: number
+  @property({type: Number}) value: number
   @property({type: Number}) max: number
 
   protected get DEG() {
@@ -21,12 +21,12 @@ export class FrequencyMeter extends LitElement {
   }
 
   static get styles() {
-    return css`    
+    return css`   
       svg {
-        filter: drop-shadow(0px 0px 2px var(--primary));
+        filter: drop-shadow(0px 0px 2px var(--frequencyMeterColor));
       }  
       rect{
-        fill: var(--primary);
+        fill: var(--frequencyMeterColor);
         opacity: .2;
         
       }

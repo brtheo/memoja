@@ -34,7 +34,7 @@ export class WordCard extends LitElement {
         border-bottom: 1px solid var(--secondary);
         width: fit-content;
         line-height: 1.6em;
-        filter: opacity(0.7);
+        filter: var(--titleOpacity, opacity(0.7));
       }
       bkj-button {
         margin: 0 var(--padding);
@@ -54,13 +54,14 @@ export class WordCard extends LitElement {
         flex-direction: row;
       }
       .hanja {
-        font-size: 1.7em;
-
+        font-size: var(--hanjaSize, 1.7em);
+        margin: var(--centerHanja, none);
       }
       .hangul {
         font-size: 1.1em;
         filter: opacity(.5);
         align-self: center;
+        display: var(--displayHangul, block);
       }
       .english {
         font-size: .6em;
@@ -93,10 +94,11 @@ export class WordCard extends LitElement {
     return html`
       <header>
         <pre>${this.title}</pre>
-        <bkj-button size="35px" rounded transparent @click=${this.playListening}>
+        <bkj-button @click=${this.playListening}>
           <bkj-icon name="volume-high" ></bkj-icon>
+          <bkj-icon></bkj-icon>
         </bkj-button>
-        <frequency-meter value=${freq_deg} max="5666" segments="5" radius="2"></frequency-meter>
+        <frequency-meter value=${freq_deg} max=${5666} segments=${5} radius=${2}></frequency-meter>
       </header>
       <main>
         <section class="korean">

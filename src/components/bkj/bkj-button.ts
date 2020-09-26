@@ -4,15 +4,6 @@ import {noSelect} from '../../styles'
 
 @customElement('bkj-button')
 export class BkjButton extends LitElement {
-  @property({type: Boolean}) private rounded: boolean = false
-  @property({type: Number}) private size: number
-
-  protected setSize() {
-    return this.size
-     ? `width: ${this.size}px;height: ${this.size};^x`
-     : ''
-  }
-
   static get styles() {
     return [noSelect, css`
       button {

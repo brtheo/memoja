@@ -20,14 +20,14 @@ export class SearchPage extends MobxLitElement {
   private get queryResults() {
     const {queryShape: shape, query} = state
     const routines = [
-      {shape: 'en', searchMethod: findWordsByEnglish},
-      {shape: 'ko', searchMethod: findWordsByHangul},
-      {shape: 'cn', searchMethod: findWordsByHanja},
-      {shape: 'radical', searchMethod: findHanjasByRadical}
+      {shape: 'en', searchFilter: findWordsByEnglish},
+      {shape: 'ko', searchFilter: findWordsByHangul},
+      {shape: 'cn', searchFilter: findWordsByHanja},
+      {shape: 'radical', searchFilter: findHanjasByRadical}
     ]
     if(shape !== false) {
       const res = routines.find(routine => routine.shape === shape)
-      return res.searchMethod(query)
+      return res.searchFilter(query)
     }
     else return []
     /*return shape === 'en'

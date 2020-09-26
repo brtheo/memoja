@@ -5,9 +5,16 @@
   },
   "WORD_CARD": {
     "WORD_OF_THE_DAY": "Word of the Day",
-    "SEE_MORE": "See more"
+    "SEE_MORE": "See more",
+    "SEE_HANJA_DETAILS": "See hanja in details"
   },
   "LIST_VIEW": {
     "ADD_PERSONAL_LIST": "Add to my list"
+  },
+  "FILTER_SETTINGS": {
+    "TITLE": "Filter settings",
+    "START": "Start",
+    "END": "End with",
+    "INCLUDE": "Include"
   }
 }

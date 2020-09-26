@@ -13,7 +13,15 @@ class State {
   @observable public page: string
   @action public setPage = (page: string) => this.page = page
 
-  @observable public currentWord: string
+  @observable public word: string
+  @action public setWord = (word: string) => this.word = word
+
+  @observable public filter: 'all' | 'start' | 'end' = 'start'
+  @action public setFilter = (filter) => this.filter = filter
+
+  @observable public hanjaToFilterOn: string
+  @action public setHanjaToFilterOn = (hanja) => this.hanjaToFilterOn = hanja
+
   
   
 }

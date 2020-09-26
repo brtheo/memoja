@@ -10,6 +10,8 @@ import {formattedLocalCode} from './utils'
 import './components/partials/xHeader'
 import './components/partials/xFooter'
 
+ import './lib/hanzi-writer.js'
+
 const formattedUserLocal = formattedLocalCode(globalThis.navigator.language)
 
 registerTranslateConfig({

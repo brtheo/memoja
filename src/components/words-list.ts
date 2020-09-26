@@ -50,6 +50,7 @@ export class WordsList extends LitElement {
         padding: 4px 8px 4px 16px;
         border-radius: calc(var(--radius) *2);
         position: relative;
+        box-shadow: var(--shadow);
       }
       .item {
         display: flex;
@@ -89,7 +90,7 @@ export class WordsList extends LitElement {
         border-radius: calc(var(--radius) *2);
         background-color: var(--primary);
         transform: translateX(100%);
-        transition: transform .2s ease-in, right .2s ease-in;
+        transition: transform var(--transitionTiming), right var(--transitionTiming);
       }
       .action.expanded {
         transform: translateX(0);

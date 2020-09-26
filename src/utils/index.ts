@@ -29,3 +29,20 @@ export const checkQueryShape = (query: string): QueryShape | false => {
   const res = routines.find(routine => routine.reg.test(char))
   return res === undefined ? false : res.shape as QueryShape 
 }
+
+export const paramsId = () => globalThis.location.href.split('/').reverse()[0]
+
+export const adaptiveFontSize = (word: string) => {
+  switch(word.length) {
+    case 1: return '5em'
+    break
+    case 2: return '4em'
+    break
+    case 3: return '3em'
+    break
+    case 4: return '2em'
+    break
+    default: return '1em'
+    break
+  }
+}

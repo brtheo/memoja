@@ -18,6 +18,10 @@ import {state} from '../store'
 export class HomePage extends MobxLitElement {
   private randoms = findRandomWord()
 
+  private handleSeeMore() {
+    Router.go(`/word/${this.randoms.id}`)
+  }
+
   static get styles() {
     return css`
       :host {
@@ -35,6 +39,7 @@ export class HomePage extends MobxLitElement {
         background-repeat: no-repeat;
         background-size: contain;
         margin-bottom: var(--padding);
+        --frequencyMeterColor: var(--primary);
       }
       simple-card {
         max-width: 450px;
@@ -69,11 +74,11 @@ export class HomePage extends MobxLitElement {
     `
   }
   render() {
-    const {randoms} = this
+    const {randoms, handleSeeMore} = this
     return html`
       <word-card .title=${translate('WORD_CARD.WORD_OF_THE_DAY')} .word=${randoms}>
         <bkj-button 
-          @click=${() => Router.go(`/word/${randoms.id}`)} 
+          @click=${handleSeeMore} 
           slot="action"
           class="seemore">${translate('WORD_CARD.SEE_MORE')}</bkj-button>
       </word-card>

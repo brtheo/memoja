@@ -45,3 +45,8 @@ export class BkjIcon extends HTMLElement {
     }
 }
 customElements.define('bkj-icon', BkjIcon)
+declare global {
+    interface HTMLElementTagNameMap {
+      "bkj-icon": BkjIcon
+    }
+  }

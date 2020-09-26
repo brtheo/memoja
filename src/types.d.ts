@@ -23,6 +23,11 @@ export interface IHanja {
       en?: string[];
       kr: string[];
   };
+  hunum?: hunum[]
+}
+export type hunum = {
+  kor: string,
+  def: string
 }
 
 export type QueryShape = 'en' | 'ko' | 'cn' | 'radical'
