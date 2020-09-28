@@ -6,7 +6,11 @@
   "WORD_CARD": {
     "WORD_OF_THE_DAY": "Mot du Jour",
     "SEE_MORE": "voir plus",
-    "SEE_HANJA_DETAILS": "Voir le Hanja en détails"
+    "SEE_HANJA_DETAILS": "Voir un Hanja en détails"
+  },
+  "HANJA_CARD": {
+    "STROKES_NUMBER": "Nombre de traits",
+    "MEANING_PRONUNCIATION": "Sens et Prononciation"
   },
   "LIST_VIEW": {
     "ADD_PERSONAL_LIST": "Ajouter a ma liste"

@@ -3,12 +3,8 @@ import {html, css, customElement, property, query} from 'lit-element'
 import { Router, RouterLocation } from '@vaadin/router'
 import {translate} from 'lit-translate'
 
-
 import {state} from '../store'
-
 import {insetHanja} from '../styles'
-import { BkjButton } from './bkj/bkj-button'
-
 
 
 @customElement('filtering-menu')
@@ -23,16 +19,14 @@ export class FilteringMenu extends MobxLitElement {
   private handleExpand() {
     this.$menu.classList.toggle('expanded')
   }
-  private handleClick(e: Event) {
-    const button = (e.currentTarget as HTMLButtonElement)
-    const hanja = button.firstElementChild.textContent
-    state.setHanjaToFilterOn(hanja)
-  }
 
-  private handleChange(e: Event) {
-    const radio = (e.currentTarget as HTMLInputElement)
-    state.setFilter(radio.value)
-    console.log(radio.value)
+  private handleHanjaChange(e: Event) {
+    e.stopImmediatePropagation()
+    state.setHanjaToFilterOn((e.currentTarget as HTMLSelectElement).value)      
+  }
+  private handleFilterChange(e: Event) {
+    e.stopImmediatePropagation()
+    state.setFilter((e.currentTarget as HTMLSelectElement).value)
   }
 
   static get styles() {
@@ -40,17 +34,20 @@ export class FilteringMenu extends MobxLitElement {
       :host {
         --buttonH: 50px;
         --buttonW: 50px;
+        --offset: 16px;
         position: fixed;
-        right: 20px;
-        bottom: 20px;
+        right: var(--offset);
+        bottom: var(--offset);
         height: var(--buttonH);
         width: var(--buttonW);
         z-index: 5;
       }
-      bkj-button:nth-child(1) {
+      bkj-button.fab, #menu {
         filter: drop-shadow(0px 0px 5px var(--color));
+        transition: all var(--transitionTiming);
+      }
+      bkj-button.fab, bkj-button.close {
         background-color: var(--color);
-        transition: transform var(--transitionTiming);
       }
       bkj-button {
         --buttonRadius: 50%;
@@ -61,119 +58,119 @@ export class FilteringMenu extends MobxLitElement {
       }
       #menu.expanded {
         transform: scale(1);
-        bottom: -20px;
-        right: -20px;
-        border-radius: calc(var(--radius) * 2);
+        right: 0;
+        bottom: 0;
       }
-      #menu.expanded + bkj-button:nth-child(1) {
-        transform: scale(5)
+      #menu.expanded + bkj-button.fab {
+        transform: scale(0);
       }
       #menu {
-        background-color: var(--bgColorContrasted);
+        background-color: var(--color);
+        color: var(--bgColorContrasted);
         height: 200px;
-        width: 100vw;
+        width: calc(100vw - calc(var(--offset) * 2 ));
         transform: scale(0);
-        transition: all var(--transitionTiming);
         transform-origin: bottom right;
         position: absolute;
-        bottom: 0;
-        right: 0;
-        border-radius: 50%;
-        padding: var(--padding);
+        bottom: 10px;
+        right: 10px;
+        border-radius: calc(var(--buttonH) / 2); /*size of fab / 2*/
+        padding: calc(var(--padding) / 4)var(--padding);
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         z-index: 6;
       }
       .close {
-        bottom: 20px;
-        right: 20px;
+        top: 0;
+        right: 0;
         position: absolute;
       }
-      pre {
+      header {
         font-size: 1rem;
         font-family: var(--subFont);
-        border-bottom: solid 1px var(--secondary);
-        width: min-content;
         margin: 0;
+        text-align: center;
       }
       main {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         padding: var(--padding) 0;
       }
-      .inset-hanja {
-        --buttonH: 50px;
-        --buttonW: 50px;
+      main label {
+        font-size: 1rem;
+        margin-bottom: 5px;
       }
-      .selected {
-        border: 2px dashed var(--secondary);
+      select {
+        display: block;
+        font-size: 16px;
+        font-family: var(--subFont);
+        font-weight: 700;
+        color: var(--color);
+        line-height: 1.3;
+        padding: .6em 1.4em .5em .8em;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        border: 1px solid var(--bgColor);
+        box-shadow: 0 1px 0 1px var(--bgColor);
+        border-radius: .5em;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--bgColorContrasted);
+        background-image: url('/assets/images/bibimbap.svg');
+        background-repeat: no-repeat, repeat;
+        background-position: right .7em top 50%, 0 0;
+        background-size: .9em auto, 100%;
+        cursor: pointer;
       }
-      main span {
-        font-size: 2rem;
+      select::-ms-expand {
+        display: none;
       }
-      fieldset {
-        font-size: .8rem;
-        display: flex;
+      select:hover {
+        border-color: var(--bgColor);
       }
-      fieldset:nth-child(2) {
-        display: flex;
-        flex-direction: column;
+      select:focus {
+        border-color: var(--bgColor);
+        box-shadow: 0 0 1px 3px var(--bgColor);
+        box-shadow: 0 0 0 3px -moz-mac-focusring;
+        color: var(--color);
+        outline: none;
+      }
+      select option {
+        font-weight:normal;
       }
     `]
   }
 
   render() {
-    const {handleExpand, hanjas, handleClick, handleChange} = this
+    const {handleExpand, hanjas, handleHanjaChange, handleFilterChange} = this
     const {hanjaToFilterOn} = state
 
-    const filters = html`
-      <section>
-        <input type="radio" id="start" value="start" name="filters" @change=${handleChange} checked/>
-        <label for="start">${translate('FILTER_SETTINGS.START')}</label>
-      </section>
-      <section>
-        <input type="radio" id="end" value="end" name="filters" @change=${handleChange} />
-        <label for="end">${translate('FILTER_SETTINGS.END')}</label>
-      </section>
-      <section>
-        <input type="radio" id="all" value="all" name="filters" @change=${handleChange} />
-        <label for="all">${translate('FILTER_SETTINGS.INCLUDE')}</label>
-      </section>
-    `
-
     return html`
-      <bkj-button @click=${handleExpand}>
-        <bkj-icon name="filter-variant-plus" size="35px"></bkj-icon>
-      </bkj-button>
       <section id="menu">
-        <pre>${translate('FILTER_SETTINGS.TITLE')}</pre>
+        <header>${translate('FILTER_SETTINGS.TITLE')}</header>
         <main>
-          <fieldset>
-            <legend>Hanja</legend>
-            ${
-              hanjas.map(hanja => html`
-                <bkj-button 
-                  class=${
-                    hanja === hanjaToFilterOn 
-                      ? 'inset-hanja selected'
-                      : 'inset-hanja'
-                  } 
-                  @click=${handleClick}>
-                  <span>${hanja}</span>
-              </bkj-button>
-              `)
-            }
-          </fieldset>
-          <fieldset>
-            <legend>Position</legend>
-            ${filters}
-          </fieldset>
+          <label for="hanja">Hanja</label>
+          <select name="hanja" @change=${handleHanjaChange}>
+            ${hanjas.map(hanja => html`<option value=${hanja}>${hanja}</option>`)}
+          </select>
+          <label for="position">Position</label>
+          <select name="position" @change=${handleFilterChange}>
+            <option ?selected=${state.filter === "start"} value="start">${translate('FILTER_SETTINGS.START')}</option>
+            <option ?selected=${state.filter === "end"} value="end">${translate('FILTER_SETTINGS.END')}</option>
+            <option ?selected=${state.filter === "all"} value="all">${translate('FILTER_SETTINGS.INCLUDE')}</option>
+          </select>
         </main>
         <bkj-button @click=${handleExpand} class="close">
           <bkj-icon name="window-close" size="35px"></bkj-icon>
         </bkj-button>
       </section>
+      <bkj-button @click=${handleExpand} class="fab">
+        <bkj-icon name="filter-variant-plus" size="35px"></bkj-icon>
+      </bkj-button>
     `
   }
 }

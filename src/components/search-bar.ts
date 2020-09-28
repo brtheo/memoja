@@ -47,7 +47,8 @@ export class SearchBar extends MobxLitElement {
         box-shadow: inset 1px 1px 15px var(--insetShadowColor);
         font-family: var(--regularFont);
         font-size: 1.2rem;
-        padding: 5px 15px;
+        padding: 5px 35px;
+        padding-right: 5px;
         border-radius: calc(var(--radius)*2);
         background-color: var(--bgColorContrasted);
         color: var(--color);
@@ -58,8 +59,8 @@ export class SearchBar extends MobxLitElement {
         align-self: center;
         display: flex;
         place-content: center;
-        transform: translateX(-50%);
-        right: 0;
+        transform: translateX(50%);
+        left: 0;
         position: absolute;
         fill: var(--color);
         filter: opacity(0.7);
@@ -74,8 +75,9 @@ export class SearchBar extends MobxLitElement {
   protected render() {
     const {handleFocus, handleKeyup: handleKeyDown} = this
     return html`
-      <input @focus=${handleFocus} @keyup=${handleKeyDown} id="search" type="text" autocomplete="off" placeholder=${translate('HEADER.SEARCH_PLACEHOLDER')}></input>
       <bkj-icon name="magnify" size="20px"></bkj-icon>
+      <input @focus=${handleFocus} @keyup=${handleKeyDown} id="search" type="text" autocomplete="off" placeholder=${translate('HEADER.SEARCH_PLACEHOLDER')}></input>
+      
     `
   }
 }

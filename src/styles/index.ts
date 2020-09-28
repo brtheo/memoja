@@ -22,13 +22,22 @@ export const noSelect = css`
     -webkit-tap-highlight-color: transparent;
   }
 `
-
-export const insetHanja = css`
-  .inset-hanja {
-    margin-right: 5px;
-    box-shadow: var(--bgColor) 2px 2px 3px inset;
-    --buttonH: 30px;
-    --buttonW: 30px;
-    --buttonRadius: var(--radius);
+export const flex = css`.flex {display: flex;}`
+export const rowWrap = css`.rowWrap {flex-flow: row wrap;}`
+export const flexCol= css`
+  .flex-col {
+    display: flex;
+    flex-direction: column;
   }
 `
+export const contentCenter = css`.content-center {place-content: center;}`
+export const contentStart = css`.content-start {place-content: flex-start;}`
+
+export const maxW = css`.max-w{width:100%}`
+
+export const hanFont = css`.han-font{font-family:var(--hanFont)}`
+export const subFont = css`.sub-font{font-family:var(--subFont)}`
+export const headingFont = css`.han-font{font-family:var(--headingFont)}`
+
+export const marginRight = css`.mr5 {margin-right: 5px}`
+export const marginLeft = css`.ml5 {margin-left: 5px}`

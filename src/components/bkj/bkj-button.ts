@@ -32,7 +32,7 @@ export class BkjButton extends LitElement {
         border-radius: var(--buttonRadius);
       }
       :host(:hover) {
-        filter: hue-rotate(55deg);
+        filter: contrast(110%)
       }
     `]
   }

@@ -22,10 +22,9 @@ export class xHeader extends MobxLitElement {
   static get styles() {
     return css`
       :host{
-        display: grid;
-        grid-template-areas: 
-        "branding commands"
-        "input input";
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
         background-color: var(--primary);
         height: max-content;
         box-shadow: 1px -5px 20px var(--black);
@@ -33,11 +32,11 @@ export class xHeader extends MobxLitElement {
         border-radius: 0 0 25px 25px;
       }
       .branding {
-        grid-area: branding;
         display: flex;
         flex-direction: column;
         place-content: flex-start;
-        margin: 0 var(--padding)
+        margin: 0 var(--padding);
+        flex-grow: 1;
       }
       .branding h1, .branding h2 {
         margin-block-start: 0;
@@ -53,37 +52,40 @@ export class xHeader extends MobxLitElement {
         font-family: var(--subFont);
       }
       .commands {
-        grid-area: commands;
         display: flex;
         flex-direction: row;
         place-content: flex-end;
+        height: fit-content;
+        position: absolute;
+        top: var(--padding);
+        right: var(--padding);
       }
       bkj-button {
         background-color: var(--primary);
-        margin-left: var(--padding);
         --buttonW: 35px;
         --buttonH: 35px;
         --buttonRadius: 50%;
-        border: solid 1px var(--color);
       }
       bkj-icon {
-        fill: var(--color);
+        fill: var(--secondary);
       }
       .switcher {
         transition: transform var(--transitionTiming);
         transform: rotate(var(--colorModeSwitcherIconRotate))
       }
       #inputcontainer {
-        grid-area: input;
         align-self: center;
         display: flex;
         place-content: center;
+        width: 90%;
+        transition: width var(--transitionTiming);
       }
       #inputcontainer.shrinked {
-        grid-area: branding;
+        width: 85%;
       } 
       search-bar {
         transform: translateY(5px);
+        width: 100%;
       }
       .shrinked search-bar{
         transform: translateY(0px)
@@ -97,22 +99,23 @@ export class xHeader extends MobxLitElement {
       <section class="branding">
         <h1>
           <bkj-icon name="dictionary" provider="local" size="35px"></bkj-icon>
-          Memoja</h1>
+          Memoja
+        </h1>
         <h2>${translate('HEADER.HANJA_DICTIONNARY')}</h2>
       </section>
     `
     return html`
       ${state.page === 'home'? brandingSection: null}
+      <section id="inputcontainer" class=${state.page !== 'home' ? 'shrinked' : null }>
+        <search-bar></search-bar>
+      </section>
       <section class="commands">
         <!-- <bkj-button>
           <bkj-icon name="account-circle-outline"></bkj-icon>
         </bkj-button> -->
         <bkj-button @click=${handleThemeSwitch} class="switcher">
-          <bkj-icon name="theme-light-dark"></bkj-icon>
+          <bkj-icon name="menu" provider="local"></bkj-icon>
         </bkj-button>
-      </section>
-      <section id="inputcontainer" class=${state.page !== 'home' ? 'shrinked' : null }>
-        <search-bar></search-bar>
       </section>
     `
   }

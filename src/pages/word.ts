@@ -10,7 +10,7 @@ import {state} from '../store'
 import { IWord } from '../types'
 import { findWordById, findWordsByHanja, findWordsByHanjaEnding, findWordsByHanjaStarting } from '../db/api/words'
 
-import {insetHanja} from '../styles'
+import {flexCol, flex, rowWrap, marginRight, maxW, contentCenter, contentStart, subFont} from '../styles'
 
 
 import '../components/filtering-menu'
@@ -19,13 +19,13 @@ import '../components/filtering-menu'
 @customElement('word-page')
 @Helmet
 export class WordPage extends MobxLitElement {
-
-  @internalProperty() private filter: 'all' | 'start' | 'end' = 'start'
-
+  private _word: string
   connectedCallback() {
     super.connectedCallback()
+    this._word = paramsId()
+  }
+  firstUpdated() {
     this.style.setProperty('--hanjaSize', adaptiveFontSize(this.Word.hanja))
-
     state.setHanjaToFilterOn(this.Hanjas[0])
   }
   private handleClick(e: Event) {
@@ -34,7 +34,7 @@ export class WordPage extends MobxLitElement {
     Router.go(`/hanja/${hanja}`)
   }
   private get Word(): IWord {
-    return findWordById(paramsId())
+    return findWordById(this._word)
   }
 
   private get Hanjas(): string[] {
@@ -52,7 +52,7 @@ export class WordPage extends MobxLitElement {
     return searchFilter(state.hanjaToFilterOn)
   }
   static get styles() {
-    return [insetHanja, css`
+    return [ css`
     :host {
         display: flex;
         flex-direction: column;
@@ -84,13 +84,20 @@ export class WordPage extends MobxLitElement {
       bkj-button > span {
         font-size: 1.5em;
       }
+      .inset-hanja {
+        margin-right: 5px;
+        box-shadow: var(--bgColor) 2px 2px 3px inset;
+        --buttonH: 30px;
+        --buttonW: 30px;
+        --buttonRadius: var(--radius);
+      }
     `]
   }
 
   render() {
     const {Word, Hanjas, Items, handleClick} = this
     return html`
-      <word-card title=${Word.hangul} .word=${Word} id=${Word.id}>
+      <word-card cardTitle=${Word.hangul} .word=${Word} id=${Word.id}>
         <section class="detail" slot="action">
           <pre>${translate('WORD_CARD.SEE_HANJA_DETAILS')}</pre>
           ${Hanjas.map(hanja => html`<bkj-button class="inset-hanja" @click=${handleClick}><span>${hanja}</span></bkj-button>`)}

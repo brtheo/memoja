@@ -8,6 +8,10 @@
     "SEE_MORE": "See more",
     "SEE_HANJA_DETAILS": "See hanja in details"
   },
+  "HANJA_CARD": {
+    "STROKES_NUMBER": "Strokes number",
+    "MEANING_PRONUNCIATION": "Meaning and Pronunciation"
+  },
   "LIST_VIEW": {
     "ADD_PERSONAL_LIST": "Add to my list"
   },

@@ -23,18 +23,13 @@ export class SearchPage extends MobxLitElement {
       {shape: 'en', searchFilter: findWordsByEnglish},
       {shape: 'ko', searchFilter: findWordsByHangul},
       {shape: 'cn', searchFilter: findWordsByHanja},
-      {shape: 'radical', searchFilter: findHanjasByRadical}
+      // {shape: 'radical', searchFilter: findHanjasByRadical}
     ]
     if(shape !== false) {
       const res = routines.find(routine => routine.shape === shape)
       return res.searchFilter(query)
     }
     else return []
-    /*return shape === 'en'
-      ? findWordsByEnglish(query)
-      : shape === 'ko'
-        ? findWordsByHangul(query)
-        : */
   }
 
   static get styles() {

@@ -18,6 +18,10 @@ export class WordsList extends LitElement {
   }
   private handleClick(e: Event) {
     e.stopPropagation
+    document.body.scrollTop = 0
+    document.body.querySelector('#outlet')
+    window.scrollTo({top: -50, behavior:'smooth'})
+    
     const item = (e.currentTarget as HTMLElement)
     Router.go(`/word/${item.id}`)
   }
@@ -25,8 +29,6 @@ export class WordsList extends LitElement {
   static get styles() {
     return css`
       :host {
-        /* height: calc(100vh - 100px);
-        max-height: calc(100vh - 100px); */
         overflow-y: scroll;
         overflow-x: hidden;
         width: 100%;
@@ -51,6 +53,10 @@ export class WordsList extends LitElement {
         border-radius: calc(var(--radius) *2);
         position: relative;
         box-shadow: var(--shadow);
+        transition: transform var(--transitionTiming)
+      }
+      li:hover {
+        transform: skewY(-2.5deg)
       }
       .item {
         display: flex;
@@ -58,9 +64,10 @@ export class WordsList extends LitElement {
         margin-right: auto;
         width: 95%;
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
       }
       .item:hover {
-        filter: opacity(.9)
+        filter: opacity(.9);   
       }
       .korean {
         display: flex;
@@ -68,6 +75,7 @@ export class WordsList extends LitElement {
       }
       .hanja {
         font-size: 1em;
+        margin-right: 5px; 
       }
       .hangul {
         font-size: .7em;
@@ -76,6 +84,7 @@ export class WordsList extends LitElement {
       }
       .english {
         font-size: .6em;
+        text-transform: capitalize;
         filter: opacity(.5);
       }
       .action {
@@ -85,17 +94,19 @@ export class WordsList extends LitElement {
         box-sizing: border-box;   
         right: 35px;
         top: 0;
-        width: 100%;
+        width: 35px;
         height: 100%;
         border-radius: calc(var(--radius) *2);
         background-color: var(--primary);
         transform: translateX(100%);
-        transition: transform var(--transitionTiming), right var(--transitionTiming);
+        transition: all var(--transitionTiming);
+        z-index: 5;
       }
       .action.expanded {
         transform: translateX(0);
         padding: calc(var(--padding) /2);
         right: 0;
+        width: 100%
       }
       bkj-button.pull {
         align-self: center;
@@ -145,7 +156,7 @@ export class WordsList extends LitElement {
               </section>
             </li>
         `)}
-      </ul
+      </ul>
     `
   }
 }

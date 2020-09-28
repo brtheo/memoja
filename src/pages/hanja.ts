@@ -16,15 +16,17 @@ import '../components/hanja-card'
 @Helmet
 export class HanjaPage extends MobxLitElement {
   @query('#hanja') private $hanja
-  private HanjaWriter
+  private _hanja: string 
   connectedCallback() {
     super.connectedCallback()
-
+    this._hanja = decodeURI(paramsId())
+  }
+  firstUpdated() {
     state.setHanjaToFilterOn(this.HanjaDefinition.hanja)
   }
 
   private get HanjaDefinition(): IHanja {
-    return findHanjaDefinitionByHanja(decodeURI(paramsId()))
+    return findHanjaDefinitionByHanja(this._hanja)
   }
 
   private get Hanjas(): string[] {
@@ -59,10 +61,8 @@ export class HanjaPage extends MobxLitElement {
 
   render() {
     const {HanjaDefinition, Items, Hanjas} = this
-    console.log(Hanjas)
-    
     return html`
-      <hanja-card .definition=${HanjaDefinition} ></hanja-card>
+      <hanja-card .definition=${HanjaDefinition}></hanja-card>
       <words-list .items=${Items}></words-list>
       <filtering-menu .hanjas=${Hanjas}></filtering-menu>
     `

@@ -8,7 +8,7 @@ import './frequency-meter'
 @customElement('word-card')
 export class WordCard extends LitElement {
   @property() word: IWord
-  @property() title: string
+  @property() cardTitle: string
 
   private playListening() {
     const utterance = new SpeechSynthesisUtterance(this.word.hangul)
@@ -31,15 +31,19 @@ export class WordCard extends LitElement {
         margin: 0;
         font-size: .6em;
         font-family: var(--subFont);
-        border-bottom: 1px solid var(--secondary);
         width: fit-content;
         line-height: 1.6em;
         filter: var(--titleOpacity, opacity(0.7));
+        color: var(--secondary);
       }
       bkj-button {
         margin: 0 var(--padding);
         align-self: center;
-        /* background-color: var(--primary); */
+        --buttonRadius: 50%;
+        --buttonH: 35px;
+        --buttonW: 35px;
+        background-color: var(--primary);
+        filter: drop-shadow(0px 0px 5px var(--primary));
       }
       bkj-icon {
         fill: var(--secondary)
@@ -71,6 +75,7 @@ export class WordCard extends LitElement {
         filter: opacity(.5);
         font-size: 0.8em;
         font-family: var(--subFont);
+        color: var(--secondary)
       }
       ol {
         padding-inline-start: 20px; 
@@ -93,10 +98,9 @@ export class WordCard extends LitElement {
     const {english} = this
     return html`
       <header>
-        <pre>${this.title}</pre>
+        <pre>${this.cardTitle}</pre>
         <bkj-button @click=${this.playListening}>
           <bkj-icon name="volume-high" ></bkj-icon>
-          <bkj-icon></bkj-icon>
         </bkj-button>
         <frequency-meter value=${freq_deg} max=${5666} segments=${5} radius=${2}></frequency-meter>
       </header>
