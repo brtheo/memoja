@@ -3,12 +3,17 @@
     "HANJA_DICTIONNARY": "Hanja Dictionnary",
     "SEARCH_PLACEHOLDER": "English, Hangul or Hanja"
   },
+  "WORDS_LIST": {
+    "TITLE": "Related words"
+  },
   "WORD_CARD": {
     "WORD_OF_THE_DAY": "Word of the Day",
     "SEE_MORE": "See more",
     "SEE_HANJA_DETAILS": "See hanja in details"
   },
   "HANJA_CARD": {
+    "PLAY_STROKE": "Play the stroke order",
+    "WRITE_CHAR": "Practice writing",
     "STROKES_NUMBER": "Strokes number",
     "MEANING_PRONUNCIATION": "Meaning and Pronunciation"
   },
@@ -20,5 +25,37 @@
     "START": "Start",
     "END": "End with",
     "INCLUDE": "Include"
+  },
+  "MENU": {
+    "LOGIN": "Login",
+    "LOGOUT": "Log out",
+    "GREETING": "Hello {{ name }}",
+    "GREETING_SUB": "Want to train your skills ?",
+    "HOME": "Home",
+    "ABOUT": "About",
+    "SETTINGS": "Settings",
+    "BACK": "Main menu",
+    "LANGUAGE": "Change language",
+    "SET_LANGUAGE": "Select a language",
+    "THEME": "Change active theme",
+    "MODE_LIGHT": "Light mode",
+    "MODE_DARK": "Dark mode"
+  },
+  "ABOUT": {
+    "SECTION1": {
+      "TITLE": "What is Memoja ?",
+      "CONTENT": {
+        "P1":"Memoja is a Hanja Korean-English dictionnary. It lets you understand the roots of the Sino-Korean vocabulary and to learn new words more easily.",
+        "P2_":"Memoja is highly inspired by ",
+        "_P2": " and our goal is to become as powerful.",
+        "P3":"Memoja is built with love by "
+      }
+    },
+    "SECTION2": {
+      "TITLE": "Data sources",
+      "CONTENT": {
+        "P1": "Memoja uses data from a variety of sources."
+      }
+    }
   }
 }

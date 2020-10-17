@@ -4,26 +4,20 @@ import {translate} from 'lit-translate'
 import { Router, RouterLocation } from '@vaadin/router'
 
 import {Helmet} from '../utils'
-
-import '../components/word-card'
-import '../components/simple-card'
-
-import {findRandomWord} from '../db/api/words'
-import {state} from '../store'
-
-
+import {fcSecondary, headingFont, selfCenter} from '../styles'
+import {pickOfTheDay} from '../db/api/words'
 
 @customElement('home-page')
 @Helmet
 export class HomePage extends MobxLitElement {
-  private randoms = findRandomWord()
+  private todayWord = pickOfTheDay()
 
   private handleSeeMore() {
-    Router.go(`/word/${this.randoms.id}`)
+    Router.go(`/word/${this.todayWord.id}`)
   }
 
   static get styles() {
-    return css`
+    return [selfCenter, fcSecondary, headingFont, css`
       :host {
         display: flex;
         flex-direction: column;
@@ -63,20 +57,21 @@ export class HomePage extends MobxLitElement {
       }
       
       .seemore {
-        height: fit-content;
-        width: fit-content;
-        padding: 5px var(--padding);
-        border: solid 2px var(--secondary);
-        border-radius: 5px;
-        background-color: var(--primary);
+        --buttonPadding: 5px var(--padding);
+        --buttonBorderStyle: solid 2px;
+        --buttonFocusOutline: var(--secondary);
+        --buttonRadius: var(--radius);
+        --buttonBC: var(--primary);
+        --buttonFC: var(--color);
         margin-left: auto;
       }
-    `
+    `]
   }
   render() {
-    const {randoms, handleSeeMore} = this
+    const {todayWord: randoms, handleSeeMore} = this
     return html`
-      <word-card .title=${translate('WORD_CARD.WORD_OF_THE_DAY')} .word=${randoms}>
+      <word-card .word=${randoms}>
+        <span slot="title" class="self-center fc-secondary heading-font">${translate('WORD_CARD.WORD_OF_THE_DAY')}</span>
         <bkj-button 
           @click=${handleSeeMore} 
           slot="action"

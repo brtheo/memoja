@@ -1,5 +1,3 @@
-if(!globalThis.hasOwnProperty('bkj')) globalThis.bkj = {iconProvider:{default : 'https://raw.githubusercontent.com/Templarian/MaterialDesign-SVG/master/svg/'}}
-globalThis.bkj.iconProvider.default = 'https://raw.githubusercontent.com/Templarian/MaterialDesign-SVG/master/svg/'
 export class BkjIcon extends HTMLElement {
     static get observedAttributes() {
         return ['name']
@@ -7,6 +5,8 @@ export class BkjIcon extends HTMLElement {
     constructor(){
         super()
         this.attachShadow({mode:'open'})
+        if(!globalThis.hasOwnProperty('bkj')) globalThis.bkj = {iconProvider:{default : 'https://raw.githubusercontent.com/Templarian/MaterialDesign-SVG/master/svg/'}}
+        globalThis.bkj.iconProvider.default = 'https://raw.githubusercontent.com/Templarian/MaterialDesign-SVG/master/svg/'
     }
     get size() {
         return this.hasAttribute('size')

@@ -4,8 +4,6 @@ import {translate} from 'lit-translate'
 
 import {Helmet} from '../utils'
 
-import '../components/words-list'
-
 import {findWordsByEnglish, findWordsByHangul, findWordsByHanja} from '../db/api/words'
 import {findHanjasByRadical} from '../db/api/radicals'
 

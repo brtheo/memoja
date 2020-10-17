@@ -3,12 +3,17 @@
     "HANJA_DICTIONNARY": "Dictionnaire de Hanja",
     "SEARCH_PLACEHOLDER": "Anglais, Hangul ou Hanja"
   },
+  "WORDS_LIST": {
+    "TITLE": "Mots en relation"
+  },
   "WORD_CARD": {
     "WORD_OF_THE_DAY": "Mot du Jour",
     "SEE_MORE": "voir plus",
     "SEE_HANJA_DETAILS": "Voir un Hanja en détails"
   },
   "HANJA_CARD": {
+    "PLAY_STROKE": "Voir le tracé",
+    "WRITE_CHAR": "Pratiquer le tracé",
     "STROKES_NUMBER": "Nombre de traits",
     "MEANING_PRONUNCIATION": "Sens et Prononciation"
   },
@@ -20,5 +25,37 @@
     "START": "Début",
     "END": "Fin",
     "INCLUDE": "Inclus"
+  },
+  "MENU": {
+    "LOGIN": "Se connecter",
+    "LOGOUT": "Se deconnecter",
+    "GREETING": "Bonjour {{ name }}",
+    "GREETING_SUB": "Envie de tester tes compétences ?",
+    "HOME": "Accueil",
+    "ABOUT": "A propos",
+    "SETTINGS": "Paramètres",
+    "BACK": "Menu principal",
+    "LANGUAGE": "Changer la langue",
+    "SET_LANGUAGE": "Selectionnez une langue",
+    "THEME": "Changer le thème de couleur",
+    "MODE_LIGHT": "Mode lumineux",
+    "MODE_DARK": "Mode sombre"
+  },
+  "ABOUT": {
+    "SECTION1": {
+      "TITLE": "Qu'est ce que Memoja ?",
+      "CONTENT": {
+        "P1":"Memoja est un dictionnaire de Hanja anglo-coréen. Il vous peremt de comprendre les racines du vocabulaire sino-coréen et d'apprendre de nouveau mot facilement.",
+        "P2_":"Memoja est très inspiré par ",
+        "_P2": " et notre but est d'être aussi fournit.",
+        "P3":"Memoja est developpé avec amour par "
+      }
+    },
+    "SECTION2": {
+      "TITLE": "Sources de données",
+      "CONTENT": {
+        "P1": "Memoja utilise une toute sorte de données"
+      }
+    }
   }
 }

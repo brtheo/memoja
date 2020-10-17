@@ -2,15 +2,17 @@ import './config/router.config'
 import './config/firebase.config'
 import './config/assets.config'
 
-import {initDarkmode} from '@brtheo/darkmode-switcher'
+import {initDarkmode} from './lib/darkmode-switcher'
 import {registerTranslateConfig, translate, use} from 'lit-translate'
-import {formattedLocalCode} from './utils'
+import {formattedLocalCode, getLang, setLang} from './utils'
+import {state} from './store'
+
 
 
 import './components/partials/xHeader'
 import './components/partials/xFooter'
 
- import './lib/hanzi-writer.js'
+ import 'hanzi-writer/dist/hanzi-writer'
 
 const formattedUserLocal = formattedLocalCode(globalThis.navigator.language)
 
@@ -29,10 +31,17 @@ registerTranslateConfig({
   }
 })
 
-if(globalThis.localStorage.getItem('lang'))
-  use(globalThis.localStorage.getItem('lang'))
+if(getLang){
+  use(getLang)
+  state.setLang(getLang)
+}
 else {
   use(formattedUserLocal)
-  globalThis.localStorage.setItem('lang',formattedUserLocal)
+  setLang(formattedUserLocal)
+  state.setLang(formattedLocalCode)
 }
-initDarkmode()
+initDarkmode(mode => 
+  mode === 'true' 
+  ? state.setMode('darkmode')
+  : state.setMode('lightmode')
+)

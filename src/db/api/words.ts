@@ -35,3 +35,5 @@ export const findRandomWord = (): IWord => findWordById(
         Math.random() * words.length-1
         ).toString()
     )
+
+export const pickOfTheDay = (): IWord => words[ Math.floor(Date.now()/86400000) % words.length ]

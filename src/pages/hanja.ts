@@ -8,10 +8,6 @@ import { IHanja, IWord } from '../types'
 import {paramsId, Helmet} from '../utils'
 import {state} from '../store'
 
-
-import '../components/hanja-card'
-
-
 @customElement('hanja-page')
 @Helmet
 export class HanjaPage extends MobxLitElement {
@@ -63,7 +59,7 @@ export class HanjaPage extends MobxLitElement {
     const {HanjaDefinition, Items, Hanjas} = this
     return html`
       <hanja-card .definition=${HanjaDefinition}></hanja-card>
-      <words-list .items=${Items}></words-list>
+      <words-list .items=${Items} ?showTitle=${true}></words-list>
       <filtering-menu .hanjas=${Hanjas}></filtering-menu>
     `
   }
