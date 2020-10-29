@@ -7,7 +7,7 @@ import { IWord } from '../types'
 import { state } from '../store'
 import { Helmet, paramsId, adaptiveFontSize, deleteDash } from '../utils'
 import { findWordById, findWordsByHanja, findWordsByHanjaEnding, findWordsByHanjaStarting } from '../db/api/words'
-import { flex, rowWrap, marginRight, maxW, contentStart, subFont, hanFont, fcSecondary, selfCenter} from '../styles'
+import { flex, rowWrap, marginRight, maxW, contentStart, subFont, hanFont, fcSecondary, selfCenter, dropShadow} from '../styles'
 
 @customElement('word-page')
 @Helmet
@@ -45,7 +45,7 @@ export class WordPage extends MobxLitElement {
     return searchFilter(state.hanjaToFilterOn)
   }
   static get styles() {
-    return [flex, rowWrap, marginRight, maxW, contentStart, subFont, fcSecondary, hanFont, selfCenter, css`
+    return [dropShadow, flex, rowWrap, marginRight, maxW, contentStart, subFont, fcSecondary, hanFont, selfCenter, css`
     :host {
         display: flex;
         flex-direction: column;
@@ -76,6 +76,9 @@ export class WordPage extends MobxLitElement {
         --buttonW: 30px;
         --buttonRadius: var(--radius);
         --buttonHoverBC: var(--color);
+        --buttonFC: var(--secondary);
+        --buttonFocusOutline: transparent;
+
       }
     `]
   }
@@ -84,7 +87,7 @@ export class WordPage extends MobxLitElement {
     const {Word, Hanjas, Items, handleClick} = this
     return html`
       <word-card .word=${Word} id=${Word.id}>
-        <span slot="title" class="fit-w han-font fc-secondary self-center">${Word.hangul}</span>
+        <span slot="title" class="fit-w han-font fc-secondary self-center drop-shadow">${Word.hangul}</span>
         <section class="detail flex content-start row-wrap" slot="action">
           <pre class="sub-font max-w fc-secondary">${translate('WORD_CARD.SEE_HANJA_DETAILS')}</pre>
           ${Hanjas.map(hanja => html`<bkj-button flat class="inset-hanja mr5" @click=${handleClick}><span class="han-font">${hanja}</span></bkj-button>`)}

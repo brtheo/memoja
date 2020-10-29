@@ -1,16 +1,29 @@
 import { MobxLitElement } from '@adobe/lit-mobx'
 import { Router } from '@vaadin/router'
 import {customElement, html, css, property, LitElement, queryAll} from 'lit-element'
+import {repeat} from 'lit-html/directives/repeat'
 import {translate} from 'lit-translate'
+import { auth } from '../config/firebase.config'
+
 import { state } from '../store'
-import { flex, flexCol, contentCenter, selfCenter, contentStart, opacity5, opacity8, marginRight, icSecondary, bgPrimary, hanFont, fcSecondary } from '../styles'
+import { flex, flexCol, contentCenter, selfCenter, contentStart, opacity5, opacity8, marginRight, icSecondary, bgPrimary, hanFont, fcSecondary, dropShadow } from '../styles'
 import { IWord } from '../types'
+
 
 @customElement('words-list')
 export class WordsList extends MobxLitElement {
   @property({type: Array}) items: IWord[] = []
   @property({type: Boolean}) showTitle: boolean = false
   @queryAll('.action') $actions
+
+  connectedCallback() {
+    super.connectedCallback()
+    auth.onAuthStateChanged(async user => {
+      if(user) {
+        await state.populateFavourites()
+      }
+    })
+  }
 
   private handleExpand(e: Event) {
     e.stopPropagation
@@ -26,8 +39,15 @@ export class WordsList extends MobxLitElement {
       ? icon.setAttribute('name','dots-vertical')
       : icon.setAttribute('name', 'window-close')
   }
+  private handleAddHistory() {
+    if(state.user && state.page === 'search') {
+      state.setHistory(state.query)
+    }
+  }
   private handleClick(e: Event) {
     e.stopPropagation()
+    this.handleAddHistory()
+    
     window.scrollTo({top: -50, behavior:'smooth'})
     
     const item = (e.currentTarget as HTMLElement)
@@ -41,7 +61,7 @@ export class WordsList extends MobxLitElement {
   }
 
   static get styles() {
-    return [flex, flexCol, contentCenter, selfCenter, contentStart, opacity5, opacity8, marginRight, icSecondary, bgPrimary, hanFont, fcSecondary, css`
+    return [dropShadow,flex, flexCol, contentCenter, selfCenter, contentStart, opacity5, opacity8, marginRight, icSecondary, bgPrimary, hanFont, fcSecondary, css`
       :host {
         overflow-y: scroll;
         overflow-x: hidden;
@@ -124,17 +144,15 @@ export class WordsList extends MobxLitElement {
         --buttonHoverFC: var(--primary);
         position: relative;
       }
-      .favourite {
-        fill: crimson;
-      }
     `]
   }
   render() {
     const {items, handleExpand, handleClick} = this
+    
     return html`
-      ${this.showTitle ? html`<h6 class="fc-secondary">${translate("WORDS_LIST.TITLE")} :</h6>`: null}
+      ${this.showTitle ? html`<h6 class="fc-secondary drop-shadow">${translate("WORDS_LIST.TITLE")} :</h6>`: null}
       <ul>
-        ${items.map(item => 
+        ${repeat(items, (item) => item.id, (item, i) =>
           html`
             <li class="flex content-center" data-id=${item.id}>
               <section class="item flex-col" id=${item.id} @click=${handleClick}>
@@ -145,9 +163,9 @@ export class WordsList extends MobxLitElement {
                 <section class="english opa-5 self-start">${item.english}</section>
               </section>
               ${state.user ? html`
-                <section class="action flex content-start bg-primary">
+                <section class="action flex content-start">
                   <bkj-button round flat @click=${this.handleFavouritize} class="pull self-center">
-                    <bkj-icon slot="icon" class=${state.favourites.has(item.id.toString()) ? 'favourite': 'ic-secondary'} name="heart"></bkj-icon>
+                    <bkj-icon slot="icon" class="ic-secondary drop-shadow" name=${state.favourites.has(item.id.toString()) ? 'heart':'heart-outline'}></bkj-icon>
                   </bkj-button>
                   <!-- <section class="commands flex self-center">
                     <bkj-button icon="before" class="mr5">

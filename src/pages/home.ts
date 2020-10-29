@@ -4,7 +4,7 @@ import {translate} from 'lit-translate'
 import { Router, RouterLocation } from '@vaadin/router'
 
 import {Helmet} from '../utils'
-import {fcSecondary, headingFont, selfCenter} from '../styles'
+import {fcSecondary, headingFont, selfCenter, frost} from '../styles'
 import {pickOfTheDay} from '../db/api/words'
 
 @customElement('home-page')
@@ -17,7 +17,7 @@ export class HomePage extends MobxLitElement {
   }
 
   static get styles() {
-    return [selfCenter, fcSecondary, headingFont, css`
+    return [selfCenter, fcSecondary, headingFont, frost, css`
       :host {
         display: flex;
         flex-direction: column;
@@ -70,20 +70,20 @@ export class HomePage extends MobxLitElement {
   render() {
     const {todayWord: randoms, handleSeeMore} = this
     return html`
-      <word-card .word=${randoms}>
+      <word-card class="frost" .word=${randoms}>
         <span slot="title" class="self-center fc-secondary heading-font">${translate('WORD_CARD.WORD_OF_THE_DAY')}</span>
         <bkj-button 
           @click=${handleSeeMore} 
           slot="action"
           class="seemore">${translate('WORD_CARD.SEE_MORE')}</bkj-button>
       </word-card>
-      <simple-card>
+      <simple-card class="frost">
         Learning ressources
       </simple-card>
-      <simple-card>
+      <simple-card class="frost">
         Lorem ipsum
       </simple-card>
-      <simple-card>
+      <simple-card class="frost">
         Dolor sit amet
       </simple-card>
     `

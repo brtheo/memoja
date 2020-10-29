@@ -40,13 +40,17 @@ export class FilteringMenu extends MobxLitElement {
         width: var(--buttonW);
         z-index: 5;
       }
+      .fab {filter: drop-shadow(0px 0px 5px var(--color));}
       bkj-button.fab, #menu {
-        filter: drop-shadow(0px 0px 5px var(--color));
         transition: all var(--transitionTiming);
         --buttonBC: var(--color);
       }
       bkj-button.close {
        --buttonFocusOutline: transparent;
+      }
+      .close, .fab {
+        --buttonFC: var(--color);
+        --buttonHoverFC: var(--color);
       }
       bkj-icon {
         fill: var(--bgColorContrasted);

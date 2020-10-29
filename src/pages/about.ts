@@ -2,7 +2,7 @@ import {MobxLitElement} from '@adobe/lit-mobx'
 import {html, css, customElement} from 'lit-element'
 import { Router, RouterLocation } from '@vaadin/router'
 import { contentCenter, flex, headingFont } from '../styles'
-import { translate } from 'lit-translate'
+import { translate, translateUnsafeHTML } from 'lit-translate'
 import { Helmet } from '../utils'
 
 @customElement('about-page')
@@ -39,8 +39,8 @@ export class AboutPage extends MobxLitElement {
         <section>
           <h2 class="heading-font">${translate('ABOUT.SECTION1.TITLE')}</h2>
           <p>${translate('ABOUT.SECTION1.CONTENT.P1')}</p>
-          <p>${translate('ABOUT.SECTION1.CONTENT.P2_')}<span><a target="_blank" href="https://www.jisho.org">Jisho</a></span>${translate('ABOUT.SECTION1.CONTENT._P2')}</p>
-          <p>${translate('ABOUT.SECTION1.CONTENT.P3')}<span><a target="_blank" href="http://www.github.com/brtheo">Brossier Theo</a></span>.</p>
+          <p>${translateUnsafeHTML('ABOUT.SECTION1.CONTENT.P2_')}${translate('ABOUT.SECTION1.CONTENT._P2')}</p>
+          <p>${translateUnsafeHTML('ABOUT.SECTION1.CONTENT.P3')}</p>
         </section>
       </article>
     `

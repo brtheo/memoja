@@ -33,7 +33,14 @@ export const ol = css`
     text-transform: capitalize;
   }
 `
-
+export const frost = css`
+@supports(backdrop-filter: blur(30px)) {
+  .frost {
+    backdrop-filter: blur(30px) saturate(125%);
+  }
+}
+`
+export const dropShadow = css`.drop-shadow {filter: drop-shadow(0px 0px 5px var(--secondary));}`
 export const flex = css`.flex {display: flex;}`
 export const rowWrap = css`.row-wrap {flex-flow: row wrap;}`
 export const flexCol= css`
@@ -50,6 +57,7 @@ export const fcSecondary = css`.fc-secondary{color:var(--secondary)}`
 export const bgPrimary = css`.bg-primary{background-color:var(--primary)}`
 
 export const contentBetween = css`.content-between{place-content: space-between}`
+export const contentAround= css`.content-around{place-content: space-around}`
 export const contentCenter = css`.content-center {place-content: center;}`
 export const contentEnd = css`.content-end {place-content: flex-end;}`
 export const contentStart = css`.content-start {place-content: flex-start;}`

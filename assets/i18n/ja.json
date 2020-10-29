@@ -1,0 +1,73 @@
+{
+  "HEADER": {
+    "HANJA_DICTIONNARY": "漢字辞典",
+    "SEARCH_PLACEHOLDER": "英語、ハングル、漢字"
+  },
+  "WORDS_LIST": {
+    "TITLE": "関連する単語"
+  },
+  "WORD_CARD": {
+    "WORD_OF_THE_DAY": "今日の単語",
+    "SEE_MORE": "もっと見る",
+    "SEE_HANJA_DETAILS": "詳しい漢字見る"
+  },
+  "HANJA_CARD": {
+    "PLAY_STROKE": "획순 보기",
+    "WRITE_CHAR": "漢字を書く",
+    "STROKES_NUMBER": "흭순 숫자",
+    "MEANING_PRONUNCIATION": "訓よみ・音読み"
+  },
+  "LIST_VIEW": {
+    "ADD_PERSONAL_LIST": "リストに追加"
+  },
+  "FILTER_SETTINGS": {
+    "TITLE": "フィルター·オプション",
+    "START": "始まり",
+    "END": "終わり",
+    "INCLUDE": "含める"
+  },
+  "MENU": {
+    "LOGIN": "ログイン",
+    "LOGOUT": "ログアウト",
+    "GREETING": "{{ name }}さん こんにちは",
+    "GREETING_SUB": "Envie de tester tes compétences ?",
+    "HOME": "ホーム",
+    "ABOUT": "紹介",
+    "SETTINGS": "設定",
+    "BACK": "バック",
+    "LANGUAGE": "言語変化",
+    "SET_LANGUAGE": "言語選択",
+    "THEME": "テーマ変化",
+    "MODE_LIGHT": "ライトテーマ",
+    "MODE_DARK": "ダークテーマ",
+    "FAVOURITES": "お気に入り",
+    "PROFILE": "プロフィール"
+  },
+  "ABOUT": {
+    "SECTION1": {
+      "TITLE": "Memojaというのは何ですか？",
+      "CONTENT": {
+        "P1":"Memojaは英韓漢字辞典である。 中韓語の語彙のルーツを理解し、新しい単語をより簡単に学べるようにしてくれる。",
+        "P2_":"Memojaは<span><a target='_blank' href='https://www.jisho.org'>Jisho</a></span>から高いインスピレーションを受けた。",
+        "_P2": "　そして、私たちの目標はそれだけ強力になることだ。",
+        "P3":" Memojaは<span><a target='_blank' href='http://www.github.com/brtheo'>Brossier Theo</a></span>が恋で開発したことです。"
+      }
+    },
+    "SECTION2": {
+      "TITLE": "Sources de données",
+      "CONTENT": {
+        "P1": "Memoja utilise une toute sorte de données"
+      }
+    }
+  },
+  "HISTORY": {
+    "TITLE": "最近検索した単語"
+  },
+  "LOGIN": {
+    "EMAIL": "メールアドレス",
+    "PASSWORD": "パスワード",
+    "LOGIN": "ログイン",
+    "SIGNIN": "サインイン",
+    "OR_USE_PROVIDER": "SNS使用"
+  }
+}

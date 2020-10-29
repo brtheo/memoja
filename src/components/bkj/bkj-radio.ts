@@ -59,7 +59,7 @@ export class BkjRadio extends LitElement {
         width: calc(var(--markerSize) / 2 );
         height: calc(var(--markerSize) / 2 );
         border-radius: 50%;
-        background-color: var(--primary);
+        background-color: var(--markerColor, var(--primary));
         transform: scale(0);
         transition: transform .2s ease-out, filter .2s ease-out;
       }

@@ -1,7 +1,7 @@
 import {customElement, html, css, property, LitElement, query} from 'lit-element'
 import {translate} from 'lit-translate'
 
-import {card, contentBetween, flex,ol,subFont,hanFont,fcSecondary,icSecondary,marginRight,contentCenter, selfBase, flexCol, opacity8,contentStart} from '../styles'
+import {card, contentBetween, flex,ol,subFont,hanFont,fcSecondary,icSecondary,marginRight,contentCenter, selfBase, flexCol, opacity8,contentStart, dropShadow} from '../styles'
 import { hunum, IHanja } from '../types'
 
 @customElement('hanja-card')
@@ -12,7 +12,7 @@ export class HanjaCard extends LitElement {
 
   firstUpdated() {
     const docStyle = getComputedStyle(document.documentElement),
-          color = docStyle.getPropertyValue('--color')
+          color = docStyle.getPropertyValue('--secondary')
     this.HanjaWriter = HanziWriter.create(this.$hanja, this.definition.hanja, {
       charDataLoader: async (char, onComplete) => {
         const res = await fetch(`/assets/data/${char}.json`)
@@ -34,13 +34,14 @@ export class HanjaCard extends LitElement {
   }
 
   static get styles() {
-    return [card, contentBetween, flex, flexCol,ol,subFont,hanFont,fcSecondary,icSecondary,marginRight,contentCenter, opacity8, selfBase ,contentStart, selfBase, css`
+    return [dropShadow,card, contentBetween, flex, flexCol,ol,subFont,hanFont,fcSecondary,icSecondary,marginRight,contentCenter, opacity8, selfBase ,contentStart, selfBase, css`
       bkj-button {
         --buttonRadius: var(--radius);
         padding: calc(var(--padding)/2);
         --buttonBC: var(--bgColorContrasted);
         --buttonHoverFC: var(--secondary);
         --buttonFocusOutline: transparent;
+        --buttonFC: var(--secondary);
       }
       bkj-button > span {
         font-size: .69em;
@@ -82,12 +83,12 @@ export class HanjaCard extends LitElement {
     return html`
       <header class="flex content-between">
         <bkj-button icon="before" class="self-base mr5" @click=${handleDraw}>
-          <bkj-icon slot="icon" class="mr5 ic-secondary" name="calligraphy" provider="local"></bkj-icon>
-          <span>${translate("HANJA_CARD.PLAY_STROKE")}</span>
+          <bkj-icon slot="icon" class="mr5 ic-secondary drop-shadow" name="calligraphy" provider="local"></bkj-icon>
+          <span class="drop-shadow">${translate("HANJA_CARD.PLAY_STROKE")}</span>
         </bkj-button>
         <bkj-button icon="before" class="self-base" @click=${handleQuiz}>
-          <bkj-icon slot="icon" class="mr5 ic-secondary" name="calligraphy-hand" provider="local"></bkj-icon>
-          <span>${translate("HANJA_CARD.WRITE_CHAR")}</span>
+          <bkj-icon slot="icon" class="mr5 ic-secondary drop-shadow" name="calligraphy-hand" provider="local"></bkj-icon>
+          <span class="drop-shadow">${translate("HANJA_CARD.WRITE_CHAR")}</span>
         </bkj-button>
       </header>
       <main>

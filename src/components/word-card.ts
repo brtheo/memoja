@@ -1,6 +1,6 @@
 import { LitElement, property, html, css, customElement } from "lit-element"
 import { IWord } from "../types"
-import {card, flex, selfCenter, fitW, hanFont, subFont, ol, contentCenter, fcSecondary, icSecondary, opacity5, bgPrimary, opacity8} from '../styles'
+import {card, flex, selfCenter, fitW, hanFont, subFont, ol, contentCenter, fcSecondary, icSecondary, opacity5, bgPrimary, opacity8, dropShadow} from '../styles'
 import {deleteDash} from '../utils'
 
 @customElement('word-card')
@@ -19,7 +19,7 @@ export class WordCard extends LitElement {
     : [this.word.english]
   }
   static get styles() {
-    return [icSecondary, card,flex,selfCenter, fitW, hanFont, subFont, ol, contentCenter, fcSecondary, opacity5, opacity8, bgPrimary, css`
+    return [dropShadow ,icSecondary, card,flex,selfCenter, fitW, hanFont, subFont, ol, contentCenter, fcSecondary, opacity5, opacity8, bgPrimary, css`
       slot[name="title"] {
         margin: 0;
         font-size: .5em !important;
@@ -48,6 +48,9 @@ export class WordCard extends LitElement {
       margin-top: auto;
       margin-bottom: var(--padding);
      }
+     frequency-meter {
+       --frequencyMeterColor: var(--secondary)
+     }
     `]
   }
   render() {
@@ -57,7 +60,7 @@ export class WordCard extends LitElement {
       <header class="flex">
         <slot name="title"></slot>
         <bkj-button round class="self-center" @click=${this.playListening}>
-          <bkj-icon slot="icon" class="ic-secondary" name="volume-high" ></bkj-icon>
+          <bkj-icon slot="icon" class="ic-secondary drop-shadow" name="volume-high" ></bkj-icon>
         </bkj-button>
         <frequency-meter class="flex self-center" value=${freq_deg} max=${5666} segments=${5} radius=${2}></frequency-meter>
       </header>

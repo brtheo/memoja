@@ -5,7 +5,7 @@ export class BkjButton extends LitElement {
   @property({type:Boolean, reflect: true}) round: boolean = false
   @property({type: String, reflect: true}) icon: 'before' | 'after'
   @property({type: Boolean, reflect: true}) flat: boolean = false
-  @property({type: Boolean, reflect: true}) disabled: false
+  @property({type: Boolean, reflect: true}) disabled: boolean = false
   @query('#button') $button: HTMLElement
   connectedCallback() {
     super.connectedCallback()

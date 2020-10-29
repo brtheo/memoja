@@ -21,6 +21,8 @@ registerTranslateConfig({
     switch(lang) {
       case 'en':
       case 'fr':
+      case 'ja':
+      case 'ko':
         return fetch(`/assets/i18n/${lang}.json`).then(res =>  res.json())
         break
       default:

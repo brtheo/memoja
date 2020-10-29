@@ -10,6 +10,7 @@ import '../components/bkj/bkj-radio-group'
 import '../components/bkj/bkj-radio'
 import '../components/bkj/bkj-select'
 import '../components/bkj/bkj-switch'
+import '../components/bkj/bkj-field'
 import '../components/partials/xHeader'
 import '../components/partials/xFooter'
 import '../components/character-guidelines'
@@ -28,6 +29,9 @@ import '../pages/word'
 import '../pages/hanja'
 import '../pages/about'
 import '../pages/login'
+import '../pages/signin'
+import '../pages/favourites'
+import '../pages/profile'
 
 
 const footer = document.querySelector('footer')
@@ -42,6 +46,9 @@ router.setRoutes([{
   {path: '/word/:id', component: 'word-page',  action: () => {state.setPage('word')}},
   {path: '/hanja/:id', component: 'hanja-page',  action: () => {state.setPage('hanja')}},
   {path: '/login', component: 'login-page',  action: () => {state.setPage('login')}},
+  {path: '/signin', component: 'signin-page',  action: () => {state.setPage('signin')}},
+  {path: '/favourites', component: 'favourites-page',  action: () => {state.setPage('favourites')}},
+  {path: '/profile', component: 'profile-page',  action: () => {state.setPage('profile')}},
   ]
 }])
 
@@ -64,6 +71,12 @@ addEventListener('helmet', (e: CustomEvent) => {
     case 'Hanja': putOnYourHelmet('Hanja') 
     break
     case 'Login': putOnYourHelmet('Login') 
+    break
+    case 'Signin': putOnYourHelmet('Signin') 
+    break
+    case 'Favourites': putOnYourHelmet('Favourites') 
+    break
+    case 'Profile': putOnYourHelmet('Profile') 
     break
 
   }

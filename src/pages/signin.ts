@@ -11,34 +11,36 @@ import { BkjField } from '../components/bkj/bkj-field'
 
 const provider = new firebase.auth.GoogleAuthProvider()
 
-@customElement('login-page')
+@customElement('signin-page')
 @Helmet
-export class LoginPage extends MobxLitElement {
+export class SigninPage extends MobxLitElement {
   @query("bkj-field[type='email']") $email: BkjField
   @query("bkj-field[type='password']") $password: BkjField
   async connectedCallback() {
     super.connectedCallback()  
-    await auth.onAuthStateChanged( async (user) => {
-      if(user) {
-        state.setUser(user)
-        const photoURL = await toDataURL(user.photoURL)
-        if(!globalThis.localStorage.getItem('usr_avatar')) globalThis.localStorage.setItem('usr_avatar', photoURL.toString()) 
-        Router.go('/')
-      }
-    })
+    
   }
-  private handleLogin() {
+
+  private handleSignIn() {
     const email = this.$email.value
     const password = this.$password.value
-    auth.signInWithEmailAndPassword(email, password)
-    .then( _ => Router.go("/"))
-    .catch((error) => {
-      var errorCode = error.code
-      var errorMessage = error.message
-    });
-  }
-  private handleGoogleLogin() {
-    auth.signInWithPopup(provider)
+    auth.createUserWithEmailAndPassword(email, password)
+    .then(_ => {
+      auth.signInWithEmailAndPassword(email, password)
+      .then( _ => {
+        auth.onAuthStateChanged(user => {
+          if(user) {
+            const user = auth.currentUser
+            user.updateProfile({
+              displayName: user.email,
+              photoURL: 'https://firebasestorage.googleapis.com/v0/b/memoja-1d38e.appspot.com/o/kimchi.png?alt=media&token=20e259af-9ff4-47da-8252-c41ff82c63f5'
+            }).then(function() {
+              Router.go("/")
+            })
+          }
+        })
+      })
+    })
   }
   static get styles() {
     return [flex, flexCol, contentCenter, maxW, opacity8, contentAround, css`
@@ -97,13 +99,8 @@ export class LoginPage extends MobxLitElement {
           <bkj-field type="password" label=${translate("LOGIN.PASSWORD")}></bkj-field>
           <section id="action" class="flex-col content-center">
             <section class='flex content-around max-w'>
-              <bkj-button @click=${this.handleLogin}>${translate("LOGIN.LOGIN")}</bkj-button>
-              <bkj-button flat @click=${() => Router.go("/signin")}>${translate("LOGIN.SIGNIN")}</bkj-button>
+              <bkj-button @click=${this.handleSignIn}>${translate("LOGIN.SIGNIN")} !</bkj-button>
             </section>
-            <div class="info opa-8">${translate("LOGIN.OR_USE_PROVIDER")}</div>
-           <section class='flex'>
-              <bkj-button @click=${this.handleGoogleLogin}><bkj-icon slot="icon" provider="local" name="google"></bkj-icon></bkj-button>
-           </section>
           </section>
         </form>
       </article>

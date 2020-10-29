@@ -2,6 +2,8 @@ import {html, css, customElement, query} from 'lit-element'
 import {MobxLitElement} from '@adobe/lit-mobx'
 import {Router} from '@vaadin/router'
 import {translate} from 'lit-translate'
+import {live} from 'lit-html/directives/live'
+
 
 
 import {state} from '../store'
@@ -76,7 +78,7 @@ export class SearchBar extends MobxLitElement {
     const {handleFocus, handleKeyup: handleKeyDown} = this
     return html`
       <bkj-icon name="magnify" size="20px"></bkj-icon>
-      <input @focus=${handleFocus} @keyup=${handleKeyDown} id="search" type="text" autocomplete="off" placeholder=${translate('HEADER.SEARCH_PLACEHOLDER')}></input>
+      <input @focus=${handleFocus} @keyup=${handleKeyDown} id="search" type="text" autocomplete="off" placeholder=${translate('HEADER.SEARCH_PLACEHOLDER')} value=${live(state.query)}></input>
       
     `
   }

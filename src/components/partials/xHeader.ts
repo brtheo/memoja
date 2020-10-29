@@ -9,7 +9,7 @@ import { Router } from '@vaadin/router'
 import firebase, {auth} from '../../config/firebase.config'
 import {state} from '../../store'
 import {setLang, getLang} from '../../utils'
-import { contentCenter, contentStart, flexCol, flex, icSecondary, selfCenter, maxW, fitH, contentEnd, subFont, headingFont, animePulse, animeSimpulse } from '../../styles'
+import { frost, contentCenter, contentStart, flexCol, flex, icSecondary, selfCenter, maxW, fitH, contentEnd, subFont, headingFont, animePulse, animeSimpulse, dropShadow, contentAround } from '../../styles'
 import { User } from '@firebase/auth-types'
 
 
@@ -47,7 +47,7 @@ export class xHeader extends MobxLitElement {
   }
 
   static get styles() {
-    return [flexCol, flex, contentStart, contentCenter, selfCenter, icSecondary, maxW, fitH, contentEnd, subFont, headingFont, animePulse, animeSimpulse, css`
+    return [dropShadow ,flexCol, flex, contentStart, contentCenter, selfCenter, icSecondary, maxW, fitH, contentEnd, subFont, headingFont, animePulse, animeSimpulse, contentAround css`
       :host{
         display: flex;
         flex-flow: row wrap;
@@ -57,6 +57,7 @@ export class xHeader extends MobxLitElement {
         box-shadow: 1px -5px 20px var(--black);
         padding: var(--padding);
         border-radius: 0 0 25px 25px;
+        backdrop-filter: blur(30px) saturate(125%);
       }
       .branding {
         margin: 0 var(--padding);
@@ -115,7 +116,10 @@ export class xHeader extends MobxLitElement {
         padding: 10px;
       }
       bkj-rich-menu bkj-button {
-        --buttonBC: var(--primary)
+        --buttonBC: var(--primary);
+        --buttonFC: var(--primary);
+        --buttonHoverFC: var(--primary);
+        --buttonFocusOutline: transparent;
       }
       bkj-rich-menu bkj-icon {
          fill: var(--secondary);
@@ -143,6 +147,9 @@ export class xHeader extends MobxLitElement {
       }
       #userbox {
         place-content: center;
+      }
+      #userbox.logged bkj-button.navbtn{
+        margin: 0px auto 0 20px;
       }
       #userbox bkj-button.navbtn {
         background-color: var(--bgColorContrasted);  
@@ -181,7 +188,21 @@ export class xHeader extends MobxLitElement {
         font-style: italic;
         filter: opacity(0.8);
       }
-
+      .submenu {
+        margin-right: 20px
+      }
+      .submenu bkj-icon {
+        fill: var(--primary)
+      }
+      .submenu bkj-button {
+        background-color: var(--bgColor);
+        --buttonW: fit-content;
+        --buttonH: 35px;
+        --buttonRadius: var(--radius);
+        margin-bottom: 5px;
+        --buttonBC: var(--secondary);
+        --buttonFC: var(--primary);
+      }
  
       #toggle {
         --buttonFocusOutline: transparent;
@@ -194,7 +215,7 @@ export class xHeader extends MobxLitElement {
         padding: 0;
         font-size: .5em;
         
-        --selectDropOffset: 50%;
+        --selectDropOffset: 45px;
         --selectRadius: calc(var(--radius)*2);
         --selectOpenedRadius: calc(var(--radius)*2) calc(var(--radius)*2) 0 0;
         --firstRadioRadius: 0;
@@ -252,18 +273,30 @@ export class xHeader extends MobxLitElement {
                   ? html`
                     <li id="userbox" class="flex-col logged">
                       <div class="sub-font greeting">${translate('MENU.GREETING', {name: () => state.user.displayName})}</div>
-                      <bkj-button class="navbtn" round>
-                        <div class="bubble anime-pulse"></div>
-                        <div class="bubble anime-pulse"></div>
-                        <img class="anime-simpulse" slot="icon" src=${globalThis.localStorage.getItem('usr_avatar')} />
-                      </bkj-button>
+                      <section class="flex content-around max-w">
+                        <bkj-button class="navbtn" round>
+                          <div class="bubble anime-pulse"></div>
+                          <div class="bubble anime-pulse"></div>
+                          <img class="anime-simpulse" slot="icon" src=${globalThis.localStorage.getItem('usr_avatar')} />
+                        </bkj-button>
+                        <section class="flex-col submenu">
+                          <bkj-button icon="after"  @click=${() => Router.go("/favourites")}>
+                              <span>${translate('MENU.FAVOURITES')}</span>
+                              <bkj-icon slot="icon" class="drop-shadow"  name="view-list-outline"></bkj-icon>
+                          </bkj-button>
+                          <bkj-button icon="after" disabled>
+                              <span>${translate('MENU.PROFILE')} soon...</span>
+                              <bkj-icon slot="icon" class="drop-shadow"  name="account-outline"></bkj-icon>
+                          </bkj-button>
+                        </section>
+                      </section>
                     </li>
                   `
                   : html`
                     <li id="userbox" class="flex-col" @click=${() => Router.go('/login')}>
                       <div class="self-center heading-font fit-w greeting">${translate('MENU.LOGIN')}</div>
                       <bkj-button class="navbtn">
-                          <bkj-icon slot="icon" size="80px" name="account-outline"></bkj-icon>
+                          <bkj-icon slot="icon" class="drop-shadow" size="80px" name="account-outline"></bkj-icon>
                       </bkj-button>
                       
                     </li>
@@ -271,19 +304,19 @@ export class xHeader extends MobxLitElement {
                 }
                 <li @click=${() => Router.go('/')}>
                     <bkj-button round  class="navbtn">
-                        <bkj-icon slot="icon" name="home"></bkj-icon>
+                        <bkj-icon slot="icon" class="drop-shadow" name="home"></bkj-icon>
                     </bkj-button>
                     <div>${translate('MENU.HOME')}</div>
                 </li>
                 <li @click=${() => Router.go('/about')}>
                     <bkj-button round  class="navbtn">
-                        <bkj-icon slot="icon" name="information-variant"></bkj-icon>
+                        <bkj-icon slot="icon" class="drop-shadow" name="information-variant"></bkj-icon>
                     </bkj-button>
                     <div>${translate('MENU.ABOUT')}</div>
                 </li>
                 <li data-path="root/options">
                     <bkj-button round class="navbtn">
-                        <bkj-icon slot="icon" name="cog"></bkj-icon>
+                        <bkj-icon slot="icon" class="drop-shadow" name="cog"></bkj-icon>
                     </bkj-button>
                     <div>${translate('MENU.SETTINGS')}</div>
                 </li>
@@ -291,7 +324,7 @@ export class xHeader extends MobxLitElement {
                   state.user && html`
                     <li class="leave" @click=${this.handleLogout}>
                       <bkj-button round class="navbtn">
-                        <bkj-icon slot="icon" name="logout"></bkj-icon>
+                        <bkj-icon slot="icon" class="drop-shadow" name="logout"></bkj-icon>
                       </bkj-button>
                       <div>${translate('MENU.LOGOUT')}</div>
                     </li> 
@@ -303,19 +336,19 @@ export class xHeader extends MobxLitElement {
             <ul slot="parts" data-path="root/options">
                 <li data-path="options/root">
                     <bkj-button round class="navbtn">
-                        <bkj-icon slot="icon" name="chevron-left"></bkj-icon>
+                        <bkj-icon slot="icon" class="drop-shadow" name="chevron-left"></bkj-icon>
                     </bkj-button>
                     <div>${translate('MENU.BACK')}</div>
                 </li>
                 <li data-path="options/language">
                     <bkj-button round class="navbtn">
-                        <bkj-icon slot="icon" name="translate"></bkj-icon>
+                        <bkj-icon slot="icon" class="drop-shadow" name="translate"></bkj-icon>
                     </bkj-button>
                     <div>${translate('MENU.LANGUAGE')}</div>
                 </li>
                 <li data-path="options/theme">
                     <bkj-button class="navbtn">
-                        <bkj-icon slot="icon" name="palette"></bkj-icon>
+                        <bkj-icon slot="icon" class="drop-shadow" name="palette"></bkj-icon>
                     </bkj-button>
                     <div>${translate('MENU.THEME')}</div>
                 </li>
@@ -324,7 +357,7 @@ export class xHeader extends MobxLitElement {
             <ul slot="parts" data-path="options/language">
                 <li data-path="language/options">
                     <bkj-button round class="navbtn">
-                        <bkj-icon slot="icon" name="chevron-left"></bkj-icon>
+                        <bkj-icon slot="icon" class="drop-shadow" name="chevron-left"></bkj-icon>
                     </bkj-button>
                     <div>${translate('MENU.SETTINGS')}</div>
                 </li>
@@ -333,6 +366,8 @@ export class xHeader extends MobxLitElement {
                     <bkj-radio-group @bkjRadio:changed=${this.handleChangeLang}>
                       <bkj-radio ?checked=${getLang === 'en'} value="en">en</bkj-radio>
                       <bkj-radio ?checked=${getLang === 'fr'} value="fr">fr</bkj-radio>
+                      <bkj-radio ?checked=${getLang === 'ko'} value="ko">ko</bkj-radio>
+                      <bkj-radio ?checked=${getLang === 'ja'} value="ja">ja</bkj-radio>
                     </bkj-radio-group>
                   </bkj-select>
                 </li>
@@ -341,7 +376,7 @@ export class xHeader extends MobxLitElement {
             <ul slot="parts" data-path="options/theme">
                 <li data-path="theme/options">
                     <bkj-button round class="navbtn">
-                        <bkj-icon slot="icon" name="chevron-left"></bkj-icon>
+                        <bkj-icon slot="icon" class="drop-shadow" name="chevron-left"></bkj-icon>
                     </bkj-button>
                     <div>${translate('MENU.SETTINGS')}</div>
                 </li>

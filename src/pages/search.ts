@@ -41,9 +41,13 @@ export class SearchPage extends MobxLitElement {
   }
   render() {
     const {queryResults} = this
+    
     return html`
-      <words-list .items=${queryResults}>
-      </words-list>
+      ${queryResults.length === 0
+        ? html`<search-history></search-history>`
+        : html`<words-list .items=${queryResults}>
+              </words-list>`
+      }
     `
   }
 }

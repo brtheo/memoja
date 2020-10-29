@@ -1,0 +1,73 @@
+{
+  "HEADER": {
+    "HANJA_DICTIONNARY": "한자 사전",
+    "SEARCH_PLACEHOLDER": "영어, 한글, 한자"
+  },
+  "WORDS_LIST": {
+    "TITLE": "관련한 단어"
+  },
+  "WORD_CARD": {
+    "WORD_OF_THE_DAY": "오늘의 단어",
+    "SEE_MORE": "더 보기",
+    "SEE_HANJA_DETAILS": "상세한 한자 보기"
+  },
+  "HANJA_CARD": {
+    "PLAY_STROKE": "획순 보기",
+    "WRITE_CHAR": "한자 긋기",
+    "STROKES_NUMBER": "획순 숫자",
+    "MEANING_PRONUNCIATION": "훈 및 음"
+  },
+  "LIST_VIEW": {
+    "ADD_PERSONAL_LIST": "목록에 추가"
+  },
+  "FILTER_SETTINGS": {
+    "TITLE": "필터 옵션",
+    "START": "우선",
+    "END": "끝",
+    "INCLUDE": "포함"
+  },
+  "MENU": {
+    "LOGIN": "로그인",
+    "LOGOUT": "로그아웃",
+    "GREETING": "{{ name }} 안녕하세요",
+    "GREETING_SUB": "Envie de tester tes compétences ?",
+    "HOME": "홈",
+    "ABOUT": "소개",
+    "SETTINGS": "설정",
+    "BACK": "백",
+    "LANGUAGE": "언어 변함",
+    "SET_LANGUAGE": "언어 선택",
+    "THEME": "테마 변함",
+    "MODE_LIGHT": "밝은 테마",
+    "MODE_DARK": "어두운 테마",
+    "FAVOURITES": "최애",
+    "PROFILE": "프로필"
+  },
+  "ABOUT": {
+    "SECTION1": {
+      "TITLE": "Memoja라는 무엇인가?",
+      "CONTENT": {
+        "P1":"Memoja는 영한 한자 사전이다. 중한어 어휘의 뿌리를 이해하고 새로운 단어를 더 쉽게 배울 수 있게 해준다.",
+        "P2_":"Memoja는 <span><a target='_blank' href='https://www.jisho.org'>Jisho</a></span>로부터 높은 영감을 받았다.",
+        "_P2": " 그리고 우리의 목표는 그만큼 강력해지는 것이다.",
+        "P3":"Memoja는 <span><a target='_blank' href='http://www.github.com/brtheo'>Brossier Theo</a></span>가 사랑으로 개발한 것이다."
+      }
+    },
+    "SECTION2": {
+      "TITLE": "Sources de données",
+      "CONTENT": {
+        "P1": "Memoja utilise une toute sorte de données"
+      }
+    }
+  },
+  "HISTORY": {
+    "TITLE": "최근 검색된 단어"
+  },
+  "LOGIN": {
+    "EMAIL": "이메일 주소",
+    "PASSWORD": "비밀번호",
+    "LOGIN": "로그인",
+    "SIGNIN": "사인 인",
+    "OR_USE_PROVIDER": "SNS사용"
+  }
+}
