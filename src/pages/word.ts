@@ -53,7 +53,7 @@ export class WordPage extends MobxLitElement {
         margin-top: 10px;
       }
       word-card {
-        max-width: 450px;
+        /* max-width: 450px; */
         background-color: var(--bgColorContrasted);
         --frequencyMeterColor: var(--primary);
         --displayHangul: none;

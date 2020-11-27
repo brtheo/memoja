@@ -58,6 +58,7 @@ export class BkjButton extends LitElement {
         border: var(--buttonBorderStyle, solid 1px) var(--buttonFocusOutline, #6dffda2f);
         transition: filter .2s ease;
         font-size: var(--buttonFS, 1rem);
+        -webkit-tap-highlight-color: transparent;
       }
       #button:hover {
         filter: contrast(150%) drop-shadow(0 0 2px var(--buttonHoverFC, teal))

@@ -247,6 +247,12 @@ export class xHeader extends MobxLitElement {
   }
   
   protected render() {
+    const local = {
+      "en":"English",
+      "fr":"Français",
+      "ko":"한국어",
+      "ja":"日本語"
+    }
     const {handleThemeSwitch} = this
     const brandingSection: TemplateResult = html`
       <section class="branding flex-col content-start">
@@ -362,12 +368,12 @@ export class xHeader extends MobxLitElement {
                     <div>${translate('MENU.SETTINGS')}</div>
                 </li>
                 <li id="changelang">
-                  <bkj-select placeholder=${state.lang}>
+                  <bkj-select placeholder=${local[state.lang]}>
                     <bkj-radio-group @bkjRadio:changed=${this.handleChangeLang}>
-                      <bkj-radio ?checked=${getLang === 'en'} value="en">en</bkj-radio>
-                      <bkj-radio ?checked=${getLang === 'fr'} value="fr">fr</bkj-radio>
-                      <bkj-radio ?checked=${getLang === 'ko'} value="ko">ko</bkj-radio>
-                      <bkj-radio ?checked=${getLang === 'ja'} value="ja">ja</bkj-radio>
+                      <bkj-radio ?checked=${getLang === 'en'} value="en">${local["en"]}</bkj-radio>
+                      <bkj-radio ?checked=${getLang === 'fr'} value="fr">${local["fr"]}</bkj-radio>
+                      <bkj-radio ?checked=${getLang === 'ko'} value="ko">${local["ko"]}</bkj-radio>
+                      <bkj-radio ?checked=${getLang === 'ja'} value="ja">${local["ja"]}</bkj-radio>
                     </bkj-radio-group>
                   </bkj-select>
                 </li>

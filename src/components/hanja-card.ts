@@ -8,6 +8,7 @@ import { hunum, IHanja } from '../types'
 export class HanjaCard extends LitElement {
   @query('#grid') private $hanja
   @property({type: Object}) definition: IHanja
+  @property({type: Boolean, reflect: true}) home: boolean = false
   private HanjaWriter
 
   firstUpdated() {
@@ -95,30 +96,30 @@ export class HanjaCard extends LitElement {
         <section class="flex content-center" id="hanja">
           <character-guidelines id="grid"></character-guidelines>
         </section>
-        <section class="details content-start">
-          <section class="korean flex-col self-base">
-            <i class="opa-8 fc-secondary sub-font">${translate("HANJA_CARD.MEANING_PRONUNCIATION")}</i>
-            <ol>
-              ${this.definition.hunum.map(o => html`
-                <li>
-                  <span class="han-font">
-                    ${o.def} <span class="eum fc-secondary">${o.kor}</span>
-                  </span>
-                </li>
-              `)}
-            </ol>
-          </section>
-          <section class="strokes flex-col self-base">
-          <i class="opa-8 fc-secondary sub-font">${translate("HANJA_CARD.STROKES_NUMBER")}</i>
-          <span>${this.definition.strokes}</span>
-          </section>
-          <section class="def flex-col self-base">
-            <i class="opa-8 fc-secondary sub-font">en</i>
-            <ol>
-              ${this.definition.def.en.map(english => html`<li>${english}</li>`)}
-            </ol>
-          </section>
-        </section>
+          ${!this.home ? html`<section class="details content-start">
+            <section class="korean flex-col self-base">
+              <i class="opa-8 fc-secondary sub-font">${translate("HANJA_CARD.MEANING_PRONUNCIATION")}</i>
+              <ol>
+                ${this.definition.hunum.map(o => html`
+                  <li>
+                    <span class="han-font">
+                      ${o.def} <span class="eum fc-secondary">${o.kor}</span>
+                    </span>
+                  </li>
+                `)}
+              </ol>
+            </section>
+            <section class="strokes flex-col self-base">
+            <i class="opa-8 fc-secondary sub-font">${translate("HANJA_CARD.STROKES_NUMBER")}</i>
+            <span>${this.definition.strokes}</span>
+            </section>
+            <section class="def flex-col self-base">
+              <i class="opa-8 fc-secondary sub-font">en</i>
+              <ol>
+                ${this.definition.def.en.map(english => html`<li>${english}</li>`)}
+              </ol>
+            </section>
+          </section>` : html``}
       </main>
     `
   }

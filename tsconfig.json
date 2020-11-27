@@ -10,12 +10,13 @@
 			"ES2017",
 			"ES2017.Intl"
 		],
+		"rootDir": "src",
 		"resolveJsonModule": true,
 		"experimentalDecorators": true,
 		"allowSyntheticDefaultImports": true
 	},
 	"include": [
-		"src/**/*.ts"
+		"**/*.ts"
 	],
 	"exclude": ["node_modules/"]
 }

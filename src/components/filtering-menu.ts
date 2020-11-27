@@ -39,6 +39,7 @@ export class FilteringMenu extends MobxLitElement {
         height: var(--buttonH);
         width: var(--buttonW);
         z-index: 5;
+        -webkit-tap-highlight-color: transparent;
       }
       .fab {filter: drop-shadow(0px 0px 5px var(--color));}
       bkj-button.fab, #menu {
@@ -47,10 +48,12 @@ export class FilteringMenu extends MobxLitElement {
       }
       bkj-button.close {
        --buttonFocusOutline: transparent;
+       -webkit-tap-highlight-color: transparent;
       }
       .close, .fab {
         --buttonFC: var(--color);
         --buttonHoverFC: var(--color);
+        
       }
       bkj-icon {
         fill: var(--bgColorContrasted);
@@ -77,6 +80,11 @@ export class FilteringMenu extends MobxLitElement {
         padding: calc(var(--padding) / 4)var(--padding);
         box-sizing: border-box;
         z-index: 6;
+      }
+      @media screen and (min-width: 860px) {
+        #menu {
+          width: 360px;
+        }
       }
       .close {
         top: 0;

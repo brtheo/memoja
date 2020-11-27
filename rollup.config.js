@@ -8,6 +8,7 @@ export default {
 	input: 'src/index.ts',
 	output: { dir: 'dist', format: 'es' },
 	plugins: [
+		
 		resolve(),
 		json({compact: true}),
 		typescript(),

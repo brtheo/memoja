@@ -120,7 +120,7 @@ export class BkjRichMenu extends HTMLElement{
         this.parentElement.insertAdjacentElement('beforeend',outerStyles)
     }
     get styles(): string {
-        return /*css*/`
+        return `
             :host {
                 --bkj-menu-heading-backcolor: rgba(var(--md-grey-600));
                 --bkj-menu-heading-size: 35px;
@@ -134,6 +134,8 @@ export class BkjRichMenu extends HTMLElement{
                 
                 width: 100%;
             }
+            
+
             :host * {
                 -webkit-touch-callout: none;
                 -webkit-user-select: none;
@@ -184,6 +186,12 @@ export class BkjRichMenu extends HTMLElement{
                 top: 0;
                 right: 0;
                 z-index: 50;
+            }
+            @media screen and (min-width: 860px) {
+                summary > nav{
+                    width: 400px;
+                    filter: drop-shadow(-2px 0 4px black)
+                }
             }
             :host details[open] summary > nav {
                 transform: scale(1)

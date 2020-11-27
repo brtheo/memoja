@@ -6,11 +6,13 @@ import { Router, RouterLocation } from '@vaadin/router'
 import {Helmet} from '../utils'
 import {fcSecondary, headingFont, selfCenter, frost} from '../styles'
 import {pickOfTheDay} from '../db/api/words'
+import {pickOfTheDay as hanjaPickOfTheDay} from '../db/api/hanjas'
 
 @customElement('home-page')
 @Helmet
 export class HomePage extends MobxLitElement {
   private todayWord = pickOfTheDay()
+  private todayHanja = hanjaPickOfTheDay()
 
   private handleSeeMore() {
     Router.go(`/word/${this.todayWord.id}`)
@@ -25,36 +27,19 @@ export class HomePage extends MobxLitElement {
         margin-top: 30px;
       }
       word-card {
-        max-width: 450px;
-        border-left: solid 7px var(--secondary);
-        background-color: var(--bgColorContrasted);
         background-image: url('/assets/images/fan.svg');
         background-position: right -75px bottom -100px;
         background-repeat: no-repeat;
         background-size: contain;
-        margin-bottom: var(--padding);
         --frequencyMeterColor: var(--primary);
       }
-      simple-card {
-        max-width: 450px;
-        height: 420px;
+      hanja-card, word-card {
+        max-width: 100vw;
         border-left: solid 7px var(--secondary);
-        background-color: var(--bgColorContrasted);
-        background-image: url('/assets/images/dessert.svg');
-        background-position: right -65px bottom -15px;
-        background-repeat: no-repeat;
-        background-size: contain;
         margin-bottom: var(--padding);
+        background-color: var(--bgColorContrasted);
       }
-      simple-card:nth-child(1) {
-        background-image: url('/assets/images/dessert.svg');
-      }
-      simple-card:nth-child(2) {
-        background-image: url('/assets/images/bibimbap.svg');
-      }
-      simple-card:nth-child(3) {
-        background-image: url('/assets/images/bulgogi.svg');
-      }
+     
       
       .seemore {
         --buttonPadding: 5px var(--padding);
@@ -68,7 +53,7 @@ export class HomePage extends MobxLitElement {
     `]
   }
   render() {
-    const {todayWord: randoms, handleSeeMore} = this
+    const {todayWord: randoms, todayHanja: randomHanja, handleSeeMore} = this
     return html`
       <word-card class="frost" .word=${randoms}>
         <span slot="title" class="self-center fc-secondary heading-font">${translate('WORD_CARD.WORD_OF_THE_DAY')}</span>
@@ -77,15 +62,7 @@ export class HomePage extends MobxLitElement {
           slot="action"
           class="seemore">${translate('WORD_CARD.SEE_MORE')}</bkj-button>
       </word-card>
-      <simple-card class="frost">
-        Learning ressources
-      </simple-card>
-      <simple-card class="frost">
-        Lorem ipsum
-      </simple-card>
-      <simple-card class="frost">
-        Dolor sit amet
-      </simple-card>
+      <hanja-card class="frost" .definition=${randomHanja} home></hanja-card>
     `
   }
 }
