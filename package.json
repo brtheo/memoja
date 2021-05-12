@@ -8,7 +8,7 @@
     "build": "rollup --config",
     "fire": "firebase serve",
     "serve": "browser-sync start --proxy 'localhost:5000' --files 'dist/*'",
-    "pwa": "create-pwa"
+    "pwa": "create-pwa --icon=\"dist/assets/pwa/dictionary.png\" --launch=\"dist/assets/pwa/dictionarych.png\""
   },
   "author": "brtheo",
   "license": "ISC",
