@@ -1,0 +1,5 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : { "namespace": "android_app", "package_name": "app.memoja.twa",
+                   "sha256_cert_fingerprints": ["76:2F:8F:CD:9A:17:99:19:0C:8C:59:5E:AD:86:51:A9:E6:2D:0F:FE:91:B9:87:B5:5D:B2:B6:C9:14:DB:46:0A"] }
+    }]

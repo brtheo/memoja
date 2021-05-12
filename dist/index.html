@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="/assets/favico.ico" type="image/x-icon">
+  <link rel="manifest" href="/manifest.webmanifest">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Memoja">
+  <meta name="apple-mobile-web-app-title" content="Memoja">
+  <meta name="theme-color" content="#4F26E1">
+  <meta name="msapplication-navbutton-color" content="#4F26E1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="msapplication-starturl" content="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/pwa/dictionary.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="512x512" href="/assets/pwa/dictionary.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.typekit.net/ppc0skv.css">
+  <style>
+    @font-face {
+      font-family: "cwTeXQKai-Medium";
+      src: url("/assets/cwTeXQKai-Medium.otf") format("truetype");
+    }
+    :root {
+
+      /*Light palette 1 begin*/
+      --shadowBlue: #7985a3;
+      --ghostWhite: #f0f2fd;
+      --hanPurple: #4F26E1;
+      --white: #fff;
+      --xiketic: #040415;
+      /*Light palette 1 end*/
+
+      /*light_palette begin*/
+      --congoPink: #f28076;
+      --melon: #ffb6af;
+      --bisque: #fae0c7;
+      --macNcheese: #fbc193;
+      --keppel: #308171;
+      /*light_palette end*/
+
+      /*dark_palette begin*/
+      --spaceCadet: #21244d;
+      --bluePigment: #4a26ab;
+      --purpureus: #9543a7;
+      --frostbite: #e350a8;
+      --powderBlue: #b8e7ea;
+      /*dark_palette end*/
+
+      /*dark_palette 1begin*/
+      --richBlackFogra29: #161e29;
+      --cultured: #F4F4F5;
+      --gunmetal: #222E3E;
+      --richBlackFogra21: #0E1621;
+      --mediumSlateBlue: #855CFF;
+      /*dark_palette end*/
+
+      --black: #2e2e2e;
+      --blackest: #121212;
+      --white: #fafafa;
+      --whitest: #fcfcfc;
+      --gray: #cccccc;
+      --yellow: #ffcc33;
+      --red: #ed314a;
+      --blue: #2c658c;
+
+      /*default_theme begin*/
+      --primary: var(--ghostWhite);
+      --secondary: var(--hanPurple);
+      --bgColor: var(--shadowBlue);
+      --bgColorContrasted: var(--white);
+      --color: var(--xiketic);
+      --markerColor: var(--secondary);
+     /* --primary: var(--melon);
+      --secondary: var(--congoPink);
+      --bgColor: var(--macNcheese);
+      --bgColorContrasted: var(--bisque);
+      --color: var(--keppel);*/
+
+      --shadowColor: var(--black);
+      --insetShadowColor: var(--white);
+      
+      --radius: 6px;
+      --padding: 1rem;
+      --shadow: 0 0 0 var(--shadowColor);
+      --fontSize: 2em;
+      --colorModeSwitcherIconRotate: .5turn;
+      --transitionTiming: .3s ease-in-out; 
+
+      --regularFont: "sofia-pro";
+      --headingFont: "sofia-pro-soft";
+      --subFont: "sofia-pro-condensed";
+      --hanFont: "cwTeXQKai-Medium";
+
+      /*default_theme end*/
+    }
+    .darkmode {
+      /*dark_theme begin*/
+      --primary: var(--gunmetal);
+      --secondary: var(--mediumSlateBlue);
+      --bgColor: var(--richBlackFogra21);
+      --bgColorContrasted: var(--richBlackFogra29);
+      --color: var(--cultured);
+      /* --primary: var(--frostbite);
+      --secondary: var(--purpureus);
+      --bgColor: var(--bluePigment);
+      --bgColorContrasted: var(--spaceCadet);
+      --color: var(--powderBlue); */
+      /*dark_theme end*/
+      --shadowColor: var(--richBlackFogra);
+      --shadow: 5px 5px 15px var(--shadowColor);
+      --insetShadowColor: var(--black);
+      --colorModeSwitcherIconRotate: 0turn;
+    }
+    body {
+      font-family: var(--regularFont);
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      place-content: center flex-start;
+      background-color: var(--bgColor);
+      color: var(--color);
+      font-size: var(--fontSize);
+      overflow-x: hidden;
+    }
+    @media screen and (min-width: 860px) {
+      body {
+        width: 70vw;
+        margin: 0 auto;
+      }
+    }
+    #outlet {
+      padding: var(--padding)
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 15;
+    }
+    footer {
+      margin-top: auto;
+    }
+    .hidden {
+      display: none;
+    }
+    #outlet > .leaving {
+    animation: 1s fadeOut ease-in-out;
+  }
+  #outlet > .entering {
+    animation: 1s fadeIn linear;
+  }
+  @keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  </style>
+  <script src="/index.js" type=module defer></script>
+  <title>Memoja</title>
+</head>
+<body>
+  <header>
+    <x-header></x-header>
+  </header>
+  <main id="outlet"></main>
+  <footer>
+    <x-footer></x-footer>
+  </footer>
+  <script type=module>  
+/*
+ This code uses the pwa-update web component https://github.com/pwa-builder/pwa-update to register your service worker,
+ tell the user when there is an update available and let the user know when your PWA is ready to use offline.
+*/
+
+import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
+const el = document.createElement('pwa-update');
+document.body.appendChild(el);
+  </script>
+</body>
+</html>
